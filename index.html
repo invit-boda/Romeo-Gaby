@@ -962,7 +962,109 @@
     .btn-directions:hover {
       background: var(--navy-mid);
     }
+    /* ══ AGENDAR EVENTO ═══════════════════════════════ */
 
+    .calendar-wrap {
+      max-width: 400px;
+      margin: 1.5rem auto 0;
+    }
+    
+    .btn-calendar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 1rem 1.4rem;
+    
+      border: 1px solid rgba(184,151,58,0.55);
+      background: transparent;
+    
+      color: var(--gold-pale);
+    
+      font-family: var(--ff-sans);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    
+      cursor: pointer;
+    
+      transition:
+        background 0.25s,
+        color 0.25s;
+    }
+    
+    .btn-calendar:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    
+    .calendar-chevron {
+      font-size: 0.8rem;
+      transition: transform 0.3s;
+    }
+    
+    .calendar-chevron.open {
+      transform: rotate(180deg);
+    }
+    
+    .calendar-panel {
+      overflow: hidden;
+      max-height: 0;
+    
+      transition: max-height 0.4s ease;
+    }
+    
+    .calendar-panel.open {
+      max-height: 220px;
+    }
+    
+    .calendar-inner {
+      border: 1px solid rgba(184,151,58,0.3);
+      border-top: none;
+    
+      background: var(--navy-mid);
+    
+      padding: 1.2rem;
+    }
+    
+    .calendar-option {
+      display: block;
+    
+      width: 100%;
+    
+      padding: 0.9rem 1rem;
+    
+      border: 1px solid rgba(238,217,144,0.25);
+    
+      background: transparent;
+    
+      color: #fff;
+    
+      font-family: var(--ff-sans);
+      font-size: 0.68rem;
+      font-weight: 400;
+    
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    
+      text-align: center;
+    
+      cursor: pointer;
+    
+      transition:
+        background 0.25s,
+        color 0.25s;
+    }
+    
+    .calendar-option + .calendar-option {
+      margin-top: 0.7rem;
+    }
+    
+    .calendar-option:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
     /* ══ RSVP ════════════════════════════════════════ */
 
     #sec-rsvp {
@@ -1976,7 +2078,70 @@
         </p>
 
       </div>
+      <!-- ══ AGENDAR EVENTO ══ -->
 
+<div class="calendar-wrap">
+
+  <button
+    type="button"
+    class="btn-calendar"
+    id="btn-calendar"
+    aria-expanded="false"
+    aria-controls="calendar-panel"
+  >
+
+    <span>
+      Agendar
+    </span>
+
+    <span
+      class="calendar-chevron"
+      id="calendar-chevron"
+    >
+      &#8964;
+    </span>
+
+  </button>
+
+
+  <div
+    class="calendar-panel"
+    id="calendar-panel"
+    aria-hidden="true"
+  >
+
+    <div class="calendar-inner">
+
+
+      <!-- GOOGLE CALENDAR -->
+
+      <a
+        id="google-calendar-link"
+        class="calendar-option"
+        href="#"
+        target="_blank"
+        rel="noopener"
+      >
+        Google Calendar
+      </a>
+
+
+      <!-- APPLE / OUTLOOK -->
+
+      <button
+        type="button"
+        class="calendar-option"
+        id="apple-calendar-btn"
+      >
+        Apple Calendar / Outlook
+      </button>
+
+
+    </div>
+
+  </div>
+
+</div>
     </div>
 
   </div>
@@ -2861,6 +3026,194 @@ window.addEventListener(
 
 updateTimeline();
 
+
+/* ══════════════════════════════════════════════════
+   AGENDAR BODA
+══════════════════════════════════════════════════ */
+
+const btnCalendar =
+  document.getElementById('btn-calendar');
+
+const calendarPanel =
+  document.getElementById('calendar-panel');
+
+const calendarChevron =
+  document.getElementById('calendar-chevron');
+
+const googleCalendarLink =
+  document.getElementById('google-calendar-link');
+
+const appleCalendarBtn =
+  document.getElementById('apple-calendar-btn');
+
+
+let calendarOpen = false;
+
+
+/* ── ABRIR / CERRAR PANEL ── */
+
+btnCalendar.addEventListener(
+  'click',
+  () => {
+
+    calendarOpen =
+      !calendarOpen;
+
+    calendarPanel.classList.toggle(
+      'open',
+      calendarOpen
+    );
+
+    calendarChevron.classList.toggle(
+      'open',
+      calendarOpen
+    );
+
+    btnCalendar.setAttribute(
+      'aria-expanded',
+      calendarOpen
+    );
+
+    calendarPanel.setAttribute(
+      'aria-hidden',
+      !calendarOpen
+    );
+
+  }
+);
+
+
+/* ══════════════════════════════════════════════════
+   DATOS DEL EVENTO
+══════════════════════════════════════════════════ */
+
+const calendarEvent = {
+
+  title:
+    'Boda Roméo & Gaby',
+
+  start:
+    '20261128T160000',
+
+  end:
+    '20261128T235900',
+
+  location:
+    'Jardines San Miguel',
+
+  description:
+    '¡Nos casamos! Será una alegría compartir este día tan especial contigo. Roméo & Gaby · 28 de noviembre de 2026.'
+
+};
+
+
+/* ══════════════════════════════════════════════════
+   GOOGLE CALENDAR
+══════════════════════════════════════════════════ */
+
+const googleCalendarURL =
+  'https://calendar.google.com/calendar/render' +
+
+  '?action=TEMPLATE' +
+
+  '&text=' +
+  encodeURIComponent(
+    calendarEvent.title
+  ) +
+
+  '&dates=' +
+  calendarEvent.start +
+  '/' +
+  calendarEvent.end +
+
+  '&ctz=' +
+  encodeURIComponent(
+    'America/Guatemala'
+  ) +
+
+  '&location=' +
+  encodeURIComponent(
+    calendarEvent.location
+  ) +
+
+  '&details=' +
+  encodeURIComponent(
+    calendarEvent.description
+  );
+
+
+googleCalendarLink.href =
+  googleCalendarURL;
+
+
+/* ══════════════════════════════════════════════════
+   APPLE CALENDAR / OUTLOOK
+══════════════════════════════════════════════════ */
+
+appleCalendarBtn.addEventListener(
+  'click',
+  () => {
+
+    const icsContent =
+`BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+PRODID:-//Romeo y Gaby//Boda 2026//ES
+BEGIN:VEVENT
+UID:boda-romeo-gaby-28112026
+DTSTAMP:20260817T180000Z
+DTSTART;TZID=America/Guatemala:20261128T160000
+DTEND;TZID=America/Guatemala:20261128T235900
+SUMMARY:Boda Roméo & Gaby
+LOCATION:Jardines San Miguel
+DESCRIPTION:¡Nos casamos! Será una alegría compartir este día tan especial contigo. Roméo & Gaby.
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR`;
+
+
+    const blob =
+      new Blob(
+        [icsContent],
+        {
+          type:
+            'text/calendar;charset=utf-8'
+        }
+      );
+
+
+    const url =
+      URL.createObjectURL(blob);
+
+
+    const link =
+      document.createElement('a');
+
+
+    link.href =
+      url;
+
+    link.download =
+      'Boda-Romeo-Gaby-28-11-2026.ics';
+
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+
+
+    setTimeout(
+      () => {
+        URL.revokeObjectURL(url);
+      },
+      1000
+    );
+
+  }
+);
 
 /* ── REGALOS TOGGLE ── */
 

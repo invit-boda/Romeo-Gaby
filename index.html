@@ -1,0 +1,3238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roméo & Gaby · 28 de Noviembre · 2026</title>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Roméo & Gaby — Nos Casamos" />
+  <meta property="og:description" content="Con alegría les invitamos a celebrar el día más especial de nuestras vidas." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1200&q=80" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%231A2B4A'/%3E%3Cpath%20d='M32,47C13,34,18,17,32,25C46,17,51,34,32,47Z'%20fill='%23D4B05A'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream:     #F7F3EE;
+      --cream-dk:  #EDE7DC;
+      --cream-dkk: #E3DAD0;
+      --navy:      #1A2B4A;
+      --navy-mid:  #243459;
+      --navy-lt:   #2E4270;
+      --gold:      #B8973A;
+      --gold-lt:   #D4B05A;
+      --gold-pale: #EED990;
+      --text:      #2C2418;
+      --text-mid:  #5C4F3A;
+      --text-lt:   #8A7A65;
+      --ff-serif: 'Playfair Display', Georgia, serif;
+      --ff-sub:   'Cormorant Garamond', Georgia, serif;
+      --ff-sans:  'Jost', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: var(--ff-sans);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ══ ENVELOPE SCREEN ═══════════════════════════════ */
+
+    #envelope-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: #F0EBE3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.7s ease, visibility 0.7s ease;
+    }
+
+    #envelope-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .envelope-wrap {
+      position: relative;
+      width: min(320px, 85vw);
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .env-body {
+      position: relative;
+      width: 100%;
+      padding-bottom: 145%;
+      background: #F5F0E8;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.1);
+    }
+
+    .env-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 52%;
+      overflow: hidden;
+      transform-origin: top center;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 3;
+    }
+
+    .env-flap::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -5%;
+      right: -5%;
+      height: 100%;
+      background: #EDE7DC;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      border-bottom: 1px solid rgba(184,151,58,0.2);
+    }
+
+    .env-flap-inner {
+      position: absolute;
+      bottom: 0;
+      left: -5%;
+      right: -5%;
+      height: 100%;
+      background: #E8E2D8;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+
+    .env-fold-left,
+    .env-fold-right {
+      position: absolute;
+      bottom: 0;
+      width: 52%;
+      height: 60%;
+      z-index: 2;
+    }
+
+    .env-fold-left {
+      left: 0;
+      background: #EAE4DA;
+      clip-path: polygon(0 0, 100% 100%, 0 100%);
+    }
+
+    .env-fold-right {
+      right: 0;
+      background: #E5DFCF;
+      clip-path: polygon(100% 0, 0 100%, 100% 100%);
+    }
+
+    .env-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 55%;
+      background: #EDE7DC;
+      z-index: 1;
+    }
+
+    .env-seal {
+      position: absolute;
+      bottom: 28%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      width: 90px;
+      height: 90px;
+      transition: transform 0.2s ease;
+    }
+
+    .env-seal:active {
+      transform: translateX(-50%) scale(0.96);
+    }
+
+    .seal-circle {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at 35% 35%,
+        #2E4270 0%,
+        #1A2B4A 55%,
+        #11203B 100%
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 2px 8px rgba(0,0,0,0.25),
+        inset 0 1px 3px rgba(255,255,255,0.15),
+        inset 0 -2px 4px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    .seal-circle::before {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .seal-circle::after {
+      content: '';
+      position: absolute;
+      inset: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .seal-text {
+      font-family: var(--ff-serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.9);
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      letter-spacing: 0.03em;
+    }
+
+    .envelope-wrap.opening .env-flap {
+      transform: rotateX(180deg);
+    }
+
+    /* ══ MAIN CONTENT ═════════════════════════════════ */
+
+    #main-content {
+      opacity: 0;
+      transition: opacity 0.8s ease 0.3s;
+    }
+
+    #main-content.visible {
+      opacity: 1;
+    }
+
+    /* ══ REVEAL ══════════════════════════════════════ */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ══ HERO / PORTADA ═══════════════════════════════ */
+
+    #hero {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      overflow: hidden;
+      background: var(--navy);
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    #hero.gone {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .hero-frame {
+      position: absolute;
+      inset: clamp(14px, 4.5vw, 30px);
+      z-index: 2;
+      border: 1px solid rgba(255,255,255,0.45);
+      pointer-events: none;
+    }
+
+    .hero-frame::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(238,217,144,0.45);
+    }
+
+    #hero-photo {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&q=80');
+      background-size: cover;
+      background-position: center 20%;
+    }
+
+    #hero-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(26,43,74,0.18) 0%,
+        rgba(26,43,74,0.3) 45%,
+        rgba(26,43,74,0.88) 80%,
+        var(--navy) 100%
+      );
+    }
+
+    #hero-top {
+      position: relative;
+      z-index: 2;
+      padding: 2.5rem 2rem 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-crest {
+      width: 56px;
+      height: 56px;
+      border: 1px solid rgba(184,151,58,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(45deg);
+    }
+
+    .hero-crest-inner {
+      transform: rotate(-45deg);
+      font-family: var(--ff-serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--gold-lt);
+    }
+
+    #hero-bottom {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 2rem 4rem;
+      color: #fff;
+    }
+
+    .hero-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold-pale);
+      margin-bottom: 0.8rem;
+      animation: fadeUp 0.9s ease forwards 0.4s;
+      opacity: 0;
+    }
+
+    .hero-names {
+      font-family: var(--ff-serif);
+      font-size: clamp(2.8rem, 10vw, 5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      animation: fadeUp 0.9s ease forwards 0.7s;
+      opacity: 0;
+    }
+
+    .hero-names em {
+      font-style: italic;
+      color: var(--gold-pale);
+    }
+
+    .hero-amp {
+      display: block;
+      font-family: var(--ff-sub);
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      font-style: italic;
+      color: rgba(255,255,255,0.6);
+      margin: 0.3rem 0;
+    }
+
+    .hero-verse {
+      font-family: var(--ff-sub);
+      font-style: italic;
+      font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+      color: rgba(255,255,255,0.75);
+      margin: 1.6rem auto 0;
+      max-width: 360px;
+      line-height: 1.7;
+      animation: fadeUp 0.9s ease forwards 1s;
+      opacity: 0;
+    }
+
+    .hero-verse cite {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      color: var(--gold-pale);
+      margin-top: 0.6rem;
+      font-style: normal;
+    }
+
+    .hero-date-pill {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.55rem 1.8rem;
+      border: 1px solid rgba(184,151,58,0.5);
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold-pale);
+      animation: fadeUp 0.9s ease forwards 1.3s;
+      opacity: 0;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      margin-top: 1.4rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: var(--ff-sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.4rem;
+      border: 0;
+      cursor: pointer;
+      transition: background 0.25s;
+      animation: fadeUp 0.9s ease forwards 1.6s;
+      opacity: 0;
+    }
+
+    .hero-cta:hover {
+      background: var(--gold-lt);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      opacity: 0;
+      animation:
+        fadeUp 0.9s ease forwards 2s,
+        bob 2.2s ease-in-out 2.5s infinite;
+      width: 1px;
+      height: 48px;
+    }
+
+    .scroll-hint::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--gold));
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bob {
+      0%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      50% {
+        transform: translateX(-50%) translateY(7px);
+      }
+    }
+
+    /* ══ FRANJA DE FOTO ══════════════════════════════ */
+
+    .photo-band {
+      position: relative;
+      min-height: 60vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      overflow: hidden;
+      background: var(--navy);
+    }
+
+    .photo-band-img {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1400&q=80') center 30%/cover;
+    }
+
+    .photo-band-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(26,43,74,0.6);
+    }
+
+    .photo-band-txt {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      padding: 3.5rem 2rem;
+    }
+
+    .photo-band-txt p {
+      font-family: var(--ff-serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.5rem, 5vw, 2.3rem);
+      line-height: 1.4;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .photo-band-txt .src {
+      display: block;
+      font-family: var(--ff-sans);
+      font-style: normal;
+      font-size: 0.62rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold-pale);
+      margin-top: 1.2rem;
+    }
+
+    /* ══ SHARED ══════════════════════════════════════ */
+
+    .sec {
+      padding: 5.5rem 2rem;
+    }
+
+    .sec-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .sec-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .gold-rule {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 1.4rem;
+    }
+
+    h2 {
+      font-family: var(--ff-serif);
+      font-size: clamp(1.9rem, 5vw, 2.8rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--navy);
+      margin-bottom: 1.8rem;
+    }
+
+    h2 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .body-copy {
+      font-family: var(--ff-sub);
+      font-size: clamp(1.05rem, 2.5vw, 1.15rem);
+      color: var(--text-mid);
+      line-height: 1.9;
+    }
+
+    /* ══ COUNTDOWN ═══════════════════════════════════ */
+
+    #sec-countdown {
+      background: var(--navy);
+    }
+
+    #sec-countdown .sec-tag {
+      color: var(--gold-pale);
+    }
+
+    #sec-countdown h2 {
+      color: #fff;
+    }
+
+    #sec-countdown h2 em {
+      color: var(--gold-lt);
+    }
+
+    #sec-countdown .gold-rule {
+      background: var(--gold-lt);
+    }
+
+    .cd-grid {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: clamp(0.6rem, 3vw, 2rem);
+      margin-top: 2.8rem;
+      flex-wrap: wrap;
+    }
+
+    .cd-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 64px;
+    }
+
+    .cd-num {
+      font-family: var(--ff-serif);
+      font-size: clamp(3rem, 9vw, 4.5rem);
+      font-weight: 500;
+      color: var(--gold-lt);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .cd-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-top: 0.5rem;
+    }
+
+    .cd-sep {
+      font-family: var(--ff-serif);
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: rgba(184,151,58,0.35);
+      line-height: 1;
+      margin-top: 0.2rem;
+    }
+
+    /* ══ STORY ═══════════════════════════════════════ */
+
+    #sec-story {
+      background: var(--cream);
+    }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 280px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .ornament::before,
+    .ornament::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.35;
+    }
+
+    .ornament-glyph {
+      font-family: var(--ff-sub);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold);
+    }
+
+    /* ══ TIMELINE ════════════════════════════════════ */
+
+    #sec-timeline {
+      background: var(--cream-dk);
+      padding: 5.5rem 0;
+    }
+
+    .timeline-header {
+      text-align: center;
+      padding: 0 2rem 3.5rem;
+    }
+
+    .timeline-container {
+      position: relative;
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 0 2rem 3rem;
+    }
+
+    .timeline-track {
+      position: absolute;
+      left: 3.2rem;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(26,43,74,0.12);
+    }
+
+    .timeline-progress {
+      position: absolute;
+      left: 3.2rem;
+      top: 0;
+      width: 1px;
+      height: 0%;
+      background: var(--navy);
+      transition: height 0.1s linear;
+      z-index: 2;
+    }
+
+    .tl-item {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.6rem;
+      margin-bottom: 3.5rem;
+      padding-left: 1rem;
+    }
+
+    .tl-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .tl-node {
+      position: relative;
+      z-index: 3;
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--cream-dk);
+      border: 1.5px solid rgba(26,43,74,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.4s, border-color 0.4s;
+      margin-top: 0.2rem;
+    }
+
+    .tl-node svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: rgba(26,43,74,0.3);
+      stroke-width: 1.8;
+      transition: fill 0.4s, stroke 0.4s;
+    }
+
+    .tl-item.active .tl-node {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+
+    .tl-item.active .tl-node svg {
+      fill: white;
+      stroke: white;
+    }
+
+    .tl-content {
+      flex: 1;
+      padding-top: 0.1rem;
+    }
+
+    .tl-time {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-lt);
+      margin-bottom: 0.2rem;
+    }
+
+    .tl-title {
+      font-family: var(--ff-serif);
+      font-size: 1.35rem;
+      color: var(--navy);
+      font-weight: 400;
+      margin-bottom: 0.8rem;
+    }
+
+    .tl-icon {
+      width: 64px;
+      height: 64px;
+      opacity: 0.25;
+      transition: opacity 0.4s;
+    }
+
+    .tl-item.active .tl-icon {
+      opacity: 1;
+    }
+
+    .tl-icon svg {
+      width: 64px;
+      height: 64px;
+    }
+
+    /* ══ EVENT / VENUE ════════════════════════════════ */
+
+    #sec-event {
+      background: var(--navy);
+    }
+
+    #sec-event .sec-tag {
+      color: var(--gold-pale);
+    }
+
+    #sec-event h2 {
+      color: #fff;
+    }
+
+    #sec-event h2 em {
+      color: var(--gold-lt);
+    }
+
+    #sec-event .gold-rule {
+      background: var(--gold-lt);
+    }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      margin-top: 2.5rem;
+      background: rgba(184,151,58,0.2);
+      border: 1px solid rgba(184,151,58,0.2);
+    }
+
+    @media (max-width: 380px) {
+      .event-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .event-cell {
+      background: var(--navy-mid);
+      padding: 1.8rem 1.2rem;
+      text-align: center;
+    }
+
+    .event-cell-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(184,151,58,0.7);
+      margin-bottom: 0.7rem;
+    }
+
+    .event-cell-value {
+      font-family: var(--ff-serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.4;
+    }
+
+    .venue-strip {
+      margin-top: 1px;
+      background: var(--navy-lt);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border: 1px solid rgba(184,151,58,0.2);
+      border-top: none;
+    }
+
+    .venue-strip-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(184,151,58,0.7);
+      margin-bottom: 0.6rem;
+    }
+
+    .venue-name {
+      font-family: var(--ff-serif);
+      font-size: clamp(1.3rem, 4vw, 1.7rem);
+      font-style: italic;
+      color: var(--gold-lt);
+      margin-bottom: 0.3rem;
+    }
+
+    .venue-address {
+      font-family: var(--ff-sub);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* ══ MAP ══════════════════════════════════════════ */
+
+    #sec-map {
+      background: var(--cream-dk);
+    }
+
+    .map-frame {
+      margin-top: 2rem;
+      aspect-ratio: 16/9;
+      border: 1px solid rgba(26,43,74,0.15);
+      overflow: hidden;
+      position: relative;
+      background: var(--cream);
+    }
+
+    .map-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .map-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      background: var(--cream);
+    }
+
+    .map-placeholder p {
+      font-size: 0.78rem;
+      color: var(--text-lt);
+      letter-spacing: 0.1em;
+    }
+
+    .map-icon {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.3rem;
+    }
+
+    .map-icon svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 1.5;
+    }
+
+    .btn-directions {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.95rem 2.6rem;
+      background: var(--navy);
+      color: var(--gold-pale);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s;
+    }
+
+    .btn-directions:hover {
+      background: var(--navy-mid);
+    }
+
+    /* ══ RSVP ════════════════════════════════════════ */
+
+    #sec-rsvp {
+      background: var(--cream);
+    }
+
+    .rsvp-note {
+      font-family: var(--ff-sub);
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      color: var(--text-mid);
+      line-height: 1.85;
+      margin-bottom: 2.2rem;
+    }
+
+    .rsvp-note strong {
+      color: var(--navy);
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    /* Botón desplegable */
+    .btn-rsvp {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 1rem 1.4rem;
+      border: 1px solid rgba(26,43,74,0.25);
+      background: transparent;
+      color: var(--navy);
+      font-family: var(--ff-sans);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .btn-rsvp:hover {
+      background: var(--navy);
+      color: var(--gold-pale);
+    }
+
+    .btn-rsvp:hover .rsvp-chevron {
+      color: var(--gold-pale);
+    }
+
+    .rsvp-chevron {
+      font-size: 0.8rem;
+      color: var(--navy);
+      transition: transform 0.3s, color 0.25s;
+      display: inline-block;
+    }
+
+    .rsvp-chevron.open {
+      transform: rotate(180deg);
+    }
+
+    .rsvp-panel {
+      max-width: 400px;
+      margin: 0 auto;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.5s ease;
+    }
+
+    .rsvp-panel.open {
+      max-height: 520px;
+    }
+
+    .rsvp-inner {
+      border: 1px solid rgba(26,43,74,0.15);
+      border-top: none;
+      padding: 1.5rem;
+      background: var(--cream-dk);
+      text-align: left;
+    }
+
+    .rsvp-field {
+      margin-bottom: 1rem;
+    }
+
+    .rsvp-field label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-lt);
+    }
+
+    .rsvp-field input,
+    .rsvp-field select {
+      width: 100%;
+      padding: 0.75rem 0.8rem;
+      border: 1px solid rgba(26,43,74,0.18);
+      background: var(--cream);
+      color: var(--text);
+      font-family: var(--ff-sans);
+      font-size: 0.82rem;
+      outline: none;
+      border-radius: 0;
+    }
+
+    .rsvp-field input:focus,
+    .rsvp-field select:focus {
+      border-color: var(--gold);
+    }
+
+    .rsvp-submit {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--navy);
+      background: var(--navy);
+      color: var(--gold-pale);
+      font-family: var(--ff-sans);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s;
+    }
+
+    .rsvp-submit:hover {
+      background: var(--navy-mid);
+    }
+
+    .rsvp-submit:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .rsvp-status {
+      display: none;
+      margin-top: 1rem;
+      font-family: var(--ff-sub);
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--navy);
+      text-align: center;
+    }
+
+    .rsvp-status.show {
+      display: block;
+    }
+
+    /* ══ DRESSCODE ════════════════════════════════════ */
+
+    #sec-dresscode {
+      background: var(--cream-dk);
+    }
+
+    .dress-badge {
+      display: inline-block;
+      background: var(--navy);
+      color: var(--gold-pale);
+      font-size: 0.6rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      padding: 0.45rem 1.6rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .dress-illustration {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 2rem;
+    }
+
+    .dress-illustration svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .dress-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    @media (max-width: 360px) {
+      .dress-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .dress-card {
+      background: var(--cream);
+      border: 1px solid rgba(26,43,74,0.12);
+      padding: 2rem 1.4rem;
+      text-align: center;
+    }
+
+    .dress-card-line {
+      width: 28px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 1.2rem;
+    }
+
+    .dress-card-title {
+      font-family: var(--ff-serif);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--navy);
+      margin-bottom: 0.9rem;
+    }
+
+    .dress-card-text {
+      font-family: var(--ff-sub);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+    }
+
+    .dress-note {
+      margin-top: 2rem;
+      font-family: var(--ff-sub);
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--text-lt);
+    }
+
+    /* ══ REGALOS ══════════════════════════════════════ */
+
+    #sec-regalos {
+      background: var(--cream);
+    }
+
+    .regalo-body {
+      font-family: var(--ff-sub);
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      color: var(--text-mid);
+      line-height: 1.9;
+      margin-bottom: 2.2rem;
+    }
+
+    .btn-cuenta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 1rem 1.4rem;
+      border: 1px solid rgba(26,43,74,0.25);
+      background: transparent;
+      color: var(--navy);
+      font-family: var(--ff-sans);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .btn-cuenta:hover {
+      background: var(--navy);
+      color: var(--gold-pale);
+    }
+
+    .btn-cuenta:hover .cuenta-chevron {
+      color: var(--gold-pale);
+    }
+
+    .cuenta-chevron {
+      font-size: 0.8rem;
+      color: var(--navy);
+      transition: transform 0.3s, color 0.25s;
+      display: inline-block;
+    }
+
+    .cuenta-chevron.open {
+      transform: rotate(180deg);
+    }
+
+    .cuenta-panel {
+      max-width: 400px;
+      margin: 0 auto;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s ease;
+    }
+
+    .cuenta-panel.open {
+      max-height: 350px;
+    }
+
+    .cuenta-inner {
+      border: 1px solid rgba(26,43,74,0.15);
+      border-top: none;
+      padding: 1.5rem;
+      background: var(--cream-dk);
+      text-align: left;
+    }
+
+    .cuenta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.7rem;
+    }
+
+    .cuenta-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .cuenta-key {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-lt);
+    }
+
+    .cuenta-val {
+      font-family: var(--ff-serif);
+      font-size: 1rem;
+      color: var(--navy);
+      letter-spacing: 0.05em;
+    }
+
+    .regalo-link {
+      color: var(--navy);
+      text-decoration: underline;
+      text-decoration-color: var(--gold);
+      text-underline-offset: 3px;
+    }
+
+    .regalo-note {
+      font-family: var(--ff-sub);
+      font-style: italic;
+      font-size: 0.98rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      margin-top: 0.45rem;
+    }
+
+    /* ══ GALLERY ══════════════════════════════════════ */
+
+    #sec-gallery {
+      background: var(--navy);
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    #sec-gallery .sec-inner {
+      padding: 0 2rem;
+    }
+
+    #sec-gallery .sec-tag {
+      color: var(--gold-pale);
+    }
+
+    #sec-gallery h2 {
+      color: #fff;
+    }
+
+    #sec-gallery h2 em {
+      color: var(--gold-lt);
+    }
+
+    #sec-gallery .gold-rule {
+      background: var(--gold-lt);
+    }
+
+    .gallery-wrap {
+      overflow: hidden;
+      margin-top: 2.5rem;
+    }
+
+    .gallery-track {
+      display: flex;
+      gap: 0.8rem;
+      padding: 0 2rem;
+      transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+
+    .gallery-slide {
+      flex: 0 0 calc(78vw);
+      max-width: 480px;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+    }
+
+    @media (min-width: 580px) {
+      .gallery-slide {
+        flex: 0 0 320px;
+      }
+    }
+
+    .gallery-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-slide:hover img {
+      transform: scale(1.04);
+    }
+
+    .gallery-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.8rem 2rem 0;
+    }
+
+    .g-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(184,151,58,0.4);
+      background: transparent;
+      color: var(--gold-lt);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.25s, background 0.25s;
+    }
+
+    .g-btn:hover {
+      border-color: var(--gold);
+      background: rgba(184,151,58,0.12);
+    }
+
+    .g-dots {
+      display: flex;
+      gap: 0.45rem;
+    }
+
+    .g-dot {
+      width: 5px;
+      height: 5px;
+      background: rgba(255,255,255,0.2);
+      border: 0;
+      cursor: pointer;
+      transition: background 0.25s;
+      padding: 0;
+    }
+
+    .g-dot.on {
+      background: var(--gold);
+    }
+
+    /* ══ FINAL ═══════════════════════════════════════ */
+
+    #sec-final {
+      background: var(--cream);
+    }
+
+    .final-quote {
+      font-family: var(--ff-serif);
+      font-size: clamp(1.7rem, 5.5vw, 2.5rem);
+      font-style: italic;
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: 1.8rem;
+    }
+
+    .final-body {
+      font-family: var(--ff-sub);
+      font-style: italic;
+      font-size: clamp(1.05rem, 2.5vw, 1.15rem);
+      color: var(--text-mid);
+      line-height: 1.9;
+    }
+
+    .final-sig {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .final-sig-line {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+    }
+
+    .final-sig-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--text-lt);
+    }
+
+    .final-sig-names {
+      font-family: var(--ff-serif);
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--navy);
+    }
+
+    /* ══ FOOTER ══════════════════════════════════════ */
+
+    footer {
+      background: var(--navy);
+      text-align: center;
+      padding: 1.4rem 2rem;
+      border-top: 1px solid rgba(184,151,58,0.2);
+    }
+
+    footer p {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal,
+      .hero-label,
+      .hero-names,
+      .hero-verse,
+      .hero-date-pill,
+      .hero-cta,
+      .scroll-hint {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .timeline-progress {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ══ ENVELOPE SCREEN ════════════════════════════ -->
+
+<div id="envelope-screen">
+  <div
+    class="envelope-wrap"
+    id="env-wrap"
+    role="button"
+    aria-label="Abrir invitación"
+    tabindex="0"
+  >
+    <div class="env-body">
+
+      <div class="env-flap" id="env-flap">
+        <div class="env-flap-inner"></div>
+      </div>
+
+      <div class="env-fold-left"></div>
+      <div class="env-fold-right"></div>
+      <div class="env-bottom"></div>
+
+      <div class="env-seal" id="env-seal">
+        <div class="seal-circle">
+          <span class="seal-text">Abrir</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ MAIN CONTENT ═══════════════════════════════ -->
+
+<div id="main-content">
+
+  <!-- HERO / PORTADA -->
+
+  <section id="hero">
+
+    <div id="hero-photo"></div>
+
+    <div class="hero-frame" aria-hidden="true"></div>
+
+    <div id="hero-top">
+      <div class="hero-crest">
+        <span class="hero-crest-inner">R&G</span>
+      </div>
+    </div>
+
+    <div id="hero-bottom">
+
+      <p class="hero-label">
+        Con todo nuestro amor, los invitamos a nuestra boda
+      </p>
+
+      <h1 class="hero-names">
+        <em>Roméo</em>
+        <span class="hero-amp">&amp;</span>
+        <em>Gaby</em>
+      </h1>
+
+      <p class="hero-verse">
+        El amor es paciente, es bondadoso, todo lo soporta,<br>
+        todo lo cree, todo lo espera, todo lo aguanta.
+        <cite>1 Corintios 13 : 4–7</cite>
+      </p>
+
+      <span class="hero-date-pill">
+        Sábado · 28 de Noviembre · 2026
+      </span>
+
+      <br>
+
+      <button
+        type="button"
+        id="hero-cta-btn"
+        class="hero-cta"
+      >
+        Ver nuestra invitación
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- FRANJA DE FOTO -->
+
+  <section class="photo-band">
+
+    <div class="photo-band-img"></div>
+
+    <div class="photo-band-txt">
+      <p>
+        Dos historias que se vuelven una.
+        <span class="src">
+          28 · 11 · 2026 — Antigua Guatemala
+        </span>
+      </p>
+    </div>
+
+  </section>
+
+
+  <!-- COUNTDOWN -->
+
+  <div class="sec" id="sec-countdown">
+
+    <div class="sec-inner reveal">
+
+      <p class="sec-tag">
+        La cuenta regresiva
+      </p>
+
+      <div class="gold-rule"></div>
+
+      <h2>
+        Faltan <em>muy pocos</em> días
+      </h2>
+
+      <div class="cd-grid">
+
+        <div class="cd-unit">
+          <span class="cd-num" id="cd-d">--</span>
+          <span class="cd-label">Días</span>
+        </div>
+
+        <span class="cd-sep">·</span>
+
+        <div class="cd-unit">
+          <span class="cd-num" id="cd-h">--</span>
+          <span class="cd-label">Horas</span>
+        </div>
+
+        <span class="cd-sep">·</span>
+
+        <div class="cd-unit">
+          <span class="cd-num" id="cd-m">--</span>
+          <span class="cd-label">Minutos</span>
+        </div>
+
+        <span class="cd-sep">·</span>
+
+        <div class="cd-unit">
+          <span class="cd-num" id="cd-s">--</span>
+          <span class="cd-label">Segundos</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- STORY -->
+
+  <div class="sec" id="sec-story">
+
+    <div class="sec-inner reveal">
+
+      <p class="sec-tag">
+        Nuestra historia
+      </p>
+
+      <div class="gold-rule"></div>
+
+      <h2>
+        Un camino que comenzó<br>
+        <em>sin esperarlo</em>
+      </h2>
+
+      <div class="ornament">
+        <span class="ornament-glyph">&#10022;</span>
+      </div>
+
+      <p class="body-copy">
+        Todo comenzó de la manera más sencilla: una conversación que no queríamos terminar,
+        una risa que se quedó grabada, y la certeza de que algo especial estaba naciendo.
+        Con el tiempo, lo que empezó como amistad se convirtió en el amor más bonito que hemos conocido.
+      </p>
+
+      <p class="body-copy" style="margin-top:1.2rem;">
+        Hoy, después de compartir sueños, aventuras y miles de momentos que solo nosotros
+        recordamos, estamos listos para dar el paso más importante de nuestras vidas.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- TIMELINE -->
+
+  <div id="sec-timeline">
+
+    <div class="timeline-header reveal">
+
+      <p class="sec-tag" style="color:var(--gold);">
+        El gran día
+      </p>
+
+      <div class="gold-rule"></div>
+
+      <h2>
+        Te compartimos los detalles<br>
+        <em>de la celebración</em>
+      </h2>
+
+    </div>
+
+
+    <div class="timeline-container" id="tl-container">
+
+      <div class="timeline-track"></div>
+      <div class="timeline-progress" id="tl-progress"></div>
+
+
+      <!-- Item 1 -->
+
+      <div class="tl-item" data-index="0">
+
+        <div class="tl-node">
+
+          <svg viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+
+        </div>
+
+        <div class="tl-content">
+
+          <p class="tl-time">
+            16:00 hrs
+          </p>
+
+          <p class="tl-title">
+            Ceremonia Religiosa
+          </p>
+
+          <div class="tl-icon">
+
+            <svg
+              viewBox="0 0 80 80"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              color="#1A2B4A"
+            >
+              <rect x="20" y="35" width="40" height="35" rx="1"/>
+              <path d="M15 38 L40 18 L65 38"/>
+              <rect x="33" y="50" width="14" height="20" rx="0"/>
+              <path d="M38 24 L38 18 M35 21 L41 21"/>
+              <rect x="25" y="40" width="10" height="12" rx="0"/>
+              <rect x="45" y="40" width="10" height="12" rx="0"/>
+            </svg>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Item 2 -->
+
+      <div class="tl-item" data-index="1">
+
+        <div class="tl-node">
+
+          <svg viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+
+        </div>
+
+        <div class="tl-content">
+
+          <p class="tl-time">
+            18:30 hrs
+          </p>
+
+          <p class="tl-title">
+            Coctel de bienvenida
+          </p>
+
+          <div class="tl-icon">
+
+            <svg
+              viewBox="0 0 80 80"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              color="#1A2B4A"
+            >
+              <path d="M25 15 L30 45 L30 62 M55 15 L50 45 L50 62"/>
+              <path d="M26 28 L54 28"/>
+              <line x1="25" y1="62" x2="55" y2="62"/>
+              <path d="M30 15 Q28 22 30 28 M50 15 Q52 22 50 28"/>
+            </svg>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Item 3 -->
+
+      <div class="tl-item" data-index="2">
+
+        <div class="tl-node">
+
+          <svg viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+
+        </div>
+
+        <div class="tl-content">
+
+          <p class="tl-time">
+            21:00 hrs
+          </p>
+
+          <p class="tl-title">
+            Celebración
+          </p>
+
+          <div class="tl-icon">
+
+            <svg
+              viewBox="0 0 80 80"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              color="#1A2B4A"
+            >
+              <circle cx="40" cy="42" r="22"/>
+              <path d="M20 42 Q40 22 60 42" stroke-width="1.2"/>
+              <line x1="18" y1="42" x2="16" y2="42"/>
+              <line x1="40" y1="20" x2="40" y2="18"/>
+              <line x1="62" y1="42" x2="64" y2="42"/>
+              <path d="M34 36 Q40 32 46 36 Q40 44 34 36Z" fill="currentColor" stroke="none"/>
+            </svg>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Item 4 -->
+
+      <div class="tl-item" data-index="3">
+
+        <div class="tl-node">
+
+          <svg viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+
+        </div>
+
+        <div class="tl-content">
+
+          <p class="tl-time">
+            22:00 hrs
+          </p>
+
+          <p class="tl-title">
+            A bailar
+          </p>
+
+          <div class="tl-icon">
+
+            <svg
+              viewBox="0 0 80 80"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              color="#1A2B4A"
+            >
+              <path d="M38 20 Q44 16 46 22 Q42 26 38 24Z" fill="currentColor" stroke="none"/>
+              <path d="M42 24 L40 36 L34 44 M42 30 L50 32"/>
+              <path d="M40 36 L44 48 L40 56 M40 48 L46 54"/>
+              <path d="M55 25 Q61 21 63 27 Q59 31 55 29Z" fill="currentColor" stroke="none"/>
+              <path d="M59 29 L57 41 L51 49 M59 35 L67 37"/>
+              <path d="M57 41 L61 53 L57 61 M57 53 L63 59"/>
+            </svg>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- VENUE / MAP -->
+
+  <div class="sec" id="sec-event">
+
+    <div class="sec-inner reveal">
+
+      <p class="sec-tag">
+        El lugar
+      </p>
+
+      <div class="gold-rule"></div>
+
+      <h2>
+        Nos encontramos <em>aquí</em>
+      </h2>
+
+      <div class="event-grid">
+
+        <div class="event-cell">
+          <p class="event-cell-label">Fecha</p>
+          <p class="event-cell-value">
+            28 de Noviembre<br>
+            2026
+          </p>
+        </div>
+
+        <div class="event-cell">
+          <p class="event-cell-label">Ceremonia</p>
+          <p class="event-cell-value">
+            4:00 PM
+          </p>
+        </div>
+
+        <div class="event-cell">
+          <p class="event-cell-label">Recepción</p>
+          <p class="event-cell-value">
+            6:30 PM
+          </p>
+        </div>
+
+        <div class="event-cell">
+          <p class="event-cell-label">Vestimenta</p>
+          <p class="event-cell-value">
+            Formal
+          </p>
+        </div>
+
+      </div>
+
+      <div class="venue-strip">
+
+        <p class="venue-strip-label">
+          Lugar del evento
+        </p>
+
+        <p class="venue-name">
+          Jardín de Eventos Los Almendros
+        </p>
+
+        <p class="venue-address">
+          5ª Avenida Norte 12-34, Antigua Guatemala
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- MAP -->
+
+  <div class="sec" id="sec-map">
+
+    <div class="sec-inner reveal">
+
+      <p class="sec-tag">
+        Cómo llegar
+      </p>
+
+      <div class="gold-rule"></div>
+
+      <h2>
+        La <em>ubicación</em>
+      </h2>
+
+      <div class="map-frame">
+
+        <div class="map-placeholder">
+
+          <div class="map-icon">
+
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+
+          </div>
+
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d328.58104243951357!2d-90.5360032815262!3d14.482565333016039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8589a61abc972a17%3A0x16d79db7835e38ca!2sJardines%20San%20Miguel!5e1!3m2!1ses!2sgt!4v1786984314038!5m2!1ses!2sgt"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+
+        </div>
+
+      </div>
+
+      <a
+        href="https://maps.app.goo.gl/XxvQQaZ6EdtruEs1A"
+        target="_blank"
+        rel="noopener"
+        class="btn-directions"
+      >
+        Abrir en Google Maps
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <!-- ══ RSVP ACTUALIZADO ══ -->
+
+  <div class="sec" id="sec-rsvp">
+
+    <div class="sec-inner reveal">
+
+      <p class="sec-tag">
+        Confirmación
+      </p>
+
+      <div class="gold-rule"></div>
+
+      <h2>
+        Confirma tu <em>asistencia</em>
+      </h2>
+
+      <p class="rsvp-note">
+        Nos encantaría tenerte con nosotros en este día tan especial.<br>
+        Por favor confirma a más tardar el
+        <strong>1 de noviembre de 2026</strong>.
+      </p>
+
+
+      <!-- BOTÓN DESPLEGABLE -->
+
+      <button
+        type="button"
+        class="btn-rsvp"
+        id="btn-rsvp"
+        aria-expanded="false"
+        aria-controls="rsvp-panel"
+      >
+
+        <span>
+          Confirmar asistencia
+        </span>
+
+        <span
+          class="rsvp-chevron"
+          id="rsvp-chevron"
+        >
+          &#8964;
+        </span>
+
+      </button>
+
+
+      <!-- FORMULARIO DESPLEGABLE -->
+
+      <div
+        class="rsvp-panel"
+        id="rsvp-panel"
+        aria-hidden="true"
+      >
+
+        <div class="rsvp-inner">
+
+          <form id="rsvp-form">
+
+
+            <!-- NOMBRE -->
+
+            <div class="rsvp-field">
+
+              <label for="rsvp-nombre">
+                Nombre completo
+              </label>
+
+              <input
+                type="text"
+                id="rsvp-nombre"
+                name="nombre"
+                autocomplete="name"
+                required
+                placeholder="Escribe tu nombre"
+              />
+
+            </div>
+
+
+            <!-- PERSONAS -->
+
+            <div class="rsvp-field">
+
+              <label for="rsvp-personas">
+                Número de personas
+              </label>
+
+              <select
+                id="rsvp-personas"
+                name="personas"
+                required
+              >
+
+                <option value="" selected disabled>
+                  Selecciona una opción
+                </option>
+
+                <option value="1">
+                  1 persona
+                </option>
+
+                <option value="2">
+                  2 personas
+                </option>
+
+                <option value="3">
+                  3 personas
+                </option>
+
+                <option value="4">
+                  4 personas
+                </option>
+
+                <option value="5">
+                  5 personas
+                </option>
+
+                <option value="6">
+                  6 personas
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- BOTÓN -->
+
+            <button
+              type="submit"
+              class="rsvp-submit"
+              id="rsvp-submit"
+            >
+              Confirmar asistencia
+            </button>
+
+
+            <!-- MENSAJE -->
+
+            <p
+              class="rsvp-status"
+              id="rsvp-status"
+              role="status"
+              aria-live="polite"
+            ></p>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- DRESSCODE -->
+
+  <div class="sec" id="sec-dresscode">
+
+    <div class="sec-inner reveal">
+
+      <p class="sec-tag">
+        Vestimenta
+      </p>
+
+      <div class="gold-rule"></div>
+
+      <h2>
+        Código de <em>vestimenta</em>
+      </h2>
+
+      <div class="dress-badge">
+        Formal
+      </div>
+
+      <div class="dress-illustration">
+
+        <svg
+          viewBox="0 0 140 130"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+
+          <!-- Dress -->
+
+          <path
+            d="M30 8 Q30 18 22 24 L8 100 Q8 108 20 108 L54 108 Q58 108 56 100 L42 24 Q34 18 34 8 Z"
+            fill="#1A2B4A"
+          />
+
+          <path
+            d="M30 8 Q32 16 34 8"
+            fill="#2E4270"
+          />
+
+
+          <!-- Suit -->
+
+          <path
+            d="M78 8 Q78 20 70 24 L62 55 L62 108 L110 108 L110 55 L102 24 Q94 20 94 8 Z"
+            fill="#1A2B4A"
+          />
+
+
+          <!-- Lapels -->
+
+          <path
+            d="M86 8 L78 28 L86 32 Z"
+            fill="#2E4270"
+          />
+
+          <path
+            d="M86 8 L94 28 L86 32 Z"
+            fill="#243459"
+          />
+
+
+          <!-- Tie -->
+
+          <path
+            d="M83 28 L86 24 L89 28 L87 50 L86 52 L85 50 Z"
+            fill="#B8973A"
+          />
+
+
+          <!-- Buttons -->
+
+          <circle
+            cx="86"
+            cy="58"
+            r="1.5"
+            fill="#2E4270"
+          />
+
+          <circle
+            cx="86"
+            cy="66"
+            r="1.5"
+            fill="#2E4270"
+          />
+
+        </svg>
+
+      </div>
+
+
+      <div class="dress-grid">
+
+        <div class="dress-card">
+
+          <div class="dress-card-line"></div>
+
+          <p class="dress-card-title">
+            Caballeros
+          </p>
+
+          <p class="dress-card-text">
+            Traje formal con camisa de vestir y zapatos formales.
+            Se sugieren tonos oscuros o neutros.
+          </p>
+
+        </div>
+
+
+        <div class="dress-card">
+
+          <div class="dress-card-line"></div>
+
+          <p class="dress-card-title">
+            Damas
+          </p>
+
+          <p class="dress-card-text">
+            Vestido formal o de cóctel elegante.
+            Se agradece evitar el color blanco.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <p class="dress-note">
+        Gracias por contribuir con su elegancia a la belleza de este día.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- ══ REGALOS ACTUALIZADO ══ -->
+
+  <div class="sec" id="sec-regalos">
+
+    <div class="sec-inner reveal">
+
+      <p class="sec-tag">
+        Regalos
+      </p>
+
+      <div class="gold-rule"></div>
+
+      <h2>
+        <em>Regalos</em>
+      </h2>
+
+
+      <p class="regalo-body">
+        Su presencia es nuestro mejor regalo.
+        Si desean tener un detalle con nosotros,
+        pueden encontrar algunas ideas en nuestra selección de
+        <em>Cemaco</em>.
+        También tendremos sobres disponibles para quienes deseen
+        obsequiarnos dinero en efectivo.
+      </p>
+
+
+      <!-- BOTÓN DESPLEGABLE -->
+
+      <button
+        class="btn-cuenta"
+        id="btn-cuenta"
+        aria-expanded="false"
+      >
+
+        <span>
+          Ver opciones de regalo
+        </span>
+
+        <span
+          class="cuenta-chevron"
+          id="cuenta-chevron"
+        >
+          &#8964;
+        </span>
+
+      </button>
+
+
+      <!-- PANEL DE REGALOS -->
+
+      <div
+        class="cuenta-panel"
+        id="cuenta-panel"
+        aria-hidden="true"
+      >
+
+        <div class="cuenta-inner">
+
+
+          <!-- CEMACO -->
+
+          <div class="cuenta-row">
+
+            <span class="cuenta-key">
+              Cemaco
+            </span>
+
+            <span class="cuenta-val">
+
+              <a
+                href="https://www.cemaco.com/"
+                target="_blank"
+                rel="noopener"
+                class="regalo-link"
+              >
+                Ver opciones de regalo
+              </a>
+
+            </span>
+
+          </div>
+
+
+          <!-- SOBRES -->
+
+          <div
+            class="cuenta-row"
+            style="display:block; margin-top:1.2rem;"
+          >
+
+            <span class="cuenta-key">
+              Sobres
+            </span>
+
+            <p class="regalo-note">
+              También tendremos sobres disponibles para quienes
+              deseen obsequiarnos dinero en efectivo.
+              Su detalle será recibido con mucho cariño.
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- GALLERY -->
+
+  <div class="sec" id="sec-gallery">
+
+    <div class="sec-inner">
+
+      <div class="reveal">
+
+        <p class="sec-tag">
+          Momentos juntos
+        </p>
+
+        <div class="gold-rule"></div>
+
+        <h2>
+          Nuestra historia<br>
+          <em>en imágenes</em>
+        </h2>
+
+      </div>
+
+    </div>
+
+
+    <div class="gallery-wrap">
+
+      <div
+        class="gallery-track"
+        id="g-track"
+      >
+
+        <div class="gallery-slide">
+          <img
+            src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=75"
+            alt="Fotografía 1"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="gallery-slide">
+          <img
+            src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=75"
+            alt="Fotografía 2"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="gallery-slide">
+          <img
+            src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=600&q=75"
+            alt="Fotografía 3"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="gallery-slide">
+          <img
+            src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=75"
+            alt="Fotografía 4"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="gallery-slide">
+          <img
+            src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=75"
+            alt="Fotografía 5"
+            loading="lazy"
+          />
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="gallery-controls">
+
+      <button
+        class="g-btn"
+        id="g-prev"
+        aria-label="Anterior"
+      >
+        &#8592;
+      </button>
+
+      <div
+        class="g-dots"
+        id="g-dots"
+      ></div>
+
+      <button
+        class="g-btn"
+        id="g-next"
+        aria-label="Siguiente"
+      >
+        &#8594;
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- FINAL -->
+
+  <div class="sec" id="sec-final">
+
+    <div class="sec-inner reveal">
+
+      <p class="sec-tag">
+        Con amor
+      </p>
+
+      <div class="gold-rule"></div>
+
+      <p class="final-quote">
+        Gracias por ser<br>
+        parte de nuestra historia
+      </p>
+
+      <p class="final-body">
+        Cada uno de ustedes ocupa un lugar especial en nuestros corazones.
+        Su presencia en este día llenará de alegría el momento más importante
+        de nuestras vidas. Los esperamos con los brazos abiertos.
+      </p>
+
+      <div class="final-sig">
+
+        <div class="final-sig-line"></div>
+
+        <p class="final-sig-label">
+          Con cariño
+        </p>
+
+        <p class="final-sig-names">
+          Roméo &amp; Gaby
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <footer>
+
+    <p>
+      Roméo &amp; Gaby
+      &nbsp;·&nbsp;
+      28 · 11 · 2026
+      &nbsp;·&nbsp;
+      Para siempre
+    </p>
+
+  </footer>
+
+</div>
+
+
+<script>
+
+/* ── ENVELOPE ── */
+
+const envScreen = document.getElementById('envelope-screen');
+const envWrap   = document.getElementById('env-wrap');
+
+let opened = false;
+
+function openEnvelope() {
+
+  if (opened) return;
+
+  opened = true;
+
+  envWrap.classList.add('opening');
+
+  setTimeout(() => {
+
+    envScreen.classList.add('hidden');
+
+    document
+      .getElementById('main-content')
+      .classList.add('visible');
+
+  }, 650);
+
+}
+
+envWrap.addEventListener(
+  'click',
+  openEnvelope
+);
+
+envWrap.addEventListener(
+  'keydown',
+  e => {
+
+    if (
+      e.key === 'Enter' ||
+      e.key === ' '
+    ) {
+      openEnvelope();
+    }
+
+  }
+);
+
+document.body.style.overflow = 'hidden';
+
+
+/* ── PORTADA → INVITACIÓN ── */
+
+const heroSection =
+  document.getElementById('hero');
+
+const heroCtaBtn =
+  document.getElementById('hero-cta-btn');
+
+heroCtaBtn.addEventListener(
+  'click',
+  () => {
+
+    heroSection.classList.add('gone');
+
+    document.body.style.overflow = '';
+
+    window.scrollTo(0, 0);
+
+  }
+);
+
+
+/* ── COUNTDOWN ── */
+
+const target =
+  new Date('2026-11-28T16:00:00');
+
+function tick() {
+
+  const diff =
+    target - Date.now();
+
+  if (diff <= 0) {
+
+    ['d','h','m','s']
+      .forEach(
+        id =>
+          document
+            .getElementById('cd-' + id)
+            .textContent = '00'
+      );
+
+    return;
+  }
+
+  document
+    .getElementById('cd-d')
+    .textContent =
+      Math.floor(diff / 86400000);
+
+  document
+    .getElementById('cd-h')
+    .textContent =
+      String(
+        Math.floor(
+          (diff % 86400000) / 3600000
+        )
+      ).padStart(2,'0');
+
+  document
+    .getElementById('cd-m')
+    .textContent =
+      String(
+        Math.floor(
+          (diff % 3600000) / 60000
+        )
+      ).padStart(2,'0');
+
+  document
+    .getElementById('cd-s')
+    .textContent =
+      String(
+        Math.floor(
+          (diff % 60000) / 1000
+        )
+      ).padStart(2,'0');
+
+}
+
+tick();
+
+setInterval(
+  tick,
+  1000
+);
+
+
+/* ── REVEAL ── */
+
+const io =
+  new IntersectionObserver(
+    entries => {
+
+      entries.forEach(
+        e => {
+
+          if (e.isIntersecting) {
+
+            e.target.classList.add('in');
+
+            io.unobserve(e.target);
+
+          }
+
+        }
+      );
+
+    },
+    {
+      threshold: 0.1
+    }
+  );
+
+document
+  .querySelectorAll('.reveal')
+  .forEach(
+    el => io.observe(el)
+  );
+
+
+/* ── TIMELINE SCROLL ── */
+
+const tlContainer =
+  document.getElementById('tl-container');
+
+const tlProgress =
+  document.getElementById('tl-progress');
+
+const tlItems =
+  document.querySelectorAll('.tl-item');
+
+
+function updateTimeline() {
+
+  if (!tlContainer) return;
+
+  const rect =
+    tlContainer.getBoundingClientRect();
+
+  const containerTop =
+    rect.top;
+
+  const containerHeight =
+    rect.height;
+
+  const viewH =
+    window.innerHeight;
+
+  const scrolled =
+    Math.max(
+      0,
+      Math.min(
+        1,
+        (
+          viewH * 0.6 -
+          containerTop
+        ) /
+        containerHeight
+      )
+    );
+
+  tlProgress.style.height =
+    (scrolled * 100) + '%';
+
+
+  tlItems.forEach(
+    item => {
+
+      const iRect =
+        item.getBoundingClientRect();
+
+      const nodeMid =
+        iRect.top +
+        iRect.height * 0.4;
+
+      if (
+        nodeMid <
+        viewH * 0.65
+      ) {
+
+        item.classList.add('active');
+
+      } else {
+
+        item.classList.remove('active');
+
+      }
+
+    }
+  );
+
+}
+
+
+window.addEventListener(
+  'scroll',
+  updateTimeline,
+  {
+    passive: true
+  }
+);
+
+updateTimeline();
+
+
+/* ── REGALOS TOGGLE ── */
+
+const btnCuenta =
+  document.getElementById('btn-cuenta');
+
+const cuentaPanel =
+  document.getElementById('cuenta-panel');
+
+const chevron =
+  document.getElementById('cuenta-chevron');
+
+let cuentaOpen = false;
+
+
+btnCuenta.addEventListener(
+  'click',
+  () => {
+
+    cuentaOpen =
+      !cuentaOpen;
+
+    cuentaPanel.classList.toggle(
+      'open',
+      cuentaOpen
+    );
+
+    chevron.classList.toggle(
+      'open',
+      cuentaOpen
+    );
+
+    btnCuenta.setAttribute(
+      'aria-expanded',
+      cuentaOpen
+    );
+
+    cuentaPanel.setAttribute(
+      'aria-hidden',
+      !cuentaOpen
+    );
+
+  }
+);
+
+
+/* ── RSVP TOGGLE ── */
+
+const btnRsvp =
+  document.getElementById('btn-rsvp');
+
+const rsvpPanel =
+  document.getElementById('rsvp-panel');
+
+const rsvpChevron =
+  document.getElementById('rsvp-chevron');
+
+const rsvpForm =
+  document.getElementById('rsvp-form');
+
+const rsvpSubmit =
+  document.getElementById('rsvp-submit');
+
+const rsvpStatus =
+  document.getElementById('rsvp-status');
+
+let rsvpOpen = false;
+
+
+btnRsvp.addEventListener(
+  'click',
+  () => {
+
+    rsvpOpen =
+      !rsvpOpen;
+
+    rsvpPanel.classList.toggle(
+      'open',
+      rsvpOpen
+    );
+
+    rsvpChevron.classList.toggle(
+      'open',
+      rsvpOpen
+    );
+
+    btnRsvp.setAttribute(
+      'aria-expanded',
+      rsvpOpen
+    );
+
+    rsvpPanel.setAttribute(
+      'aria-hidden',
+      !rsvpOpen
+    );
+
+  }
+);
+
+
+/* ── GOOGLE APPS SCRIPT ── */
+
+const RSVP_APPS_SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbzaPt2RDMWtG3aYM3J5TMF_EWpmLUSfDp2FrLSM3H9evnMc9p8gei0kEqmOr_ciRiRi0Q/exec';
+
+
+/* ── ENVÍO DEL RSVP ── */
+
+rsvpForm.addEventListener(
+  'submit',
+  async event => {
+
+    event.preventDefault();
+
+
+    const nombre =
+      document
+        .getElementById('rsvp-nombre')
+        .value
+        .trim();
+
+    const personas =
+      document
+        .getElementById('rsvp-personas')
+        .value;
+
+
+    if (!nombre || !personas) {
+
+      rsvpStatus.textContent =
+        'Por favor completa tu nombre y el número de personas.';
+
+      rsvpStatus.classList.add(
+        'show'
+      );
+
+      return;
+
+    }
+
+
+    rsvpSubmit.disabled = true;
+
+    rsvpSubmit.textContent =
+      'Enviando...';
+
+    rsvpStatus.classList.remove(
+      'show'
+    );
+
+
+    /*
+     * Creamos solamente los dos campos
+     * que actualmente necesitamos:
+     *
+     * nombre
+     * personas
+     */
+
+    const data =
+      new FormData();
+
+    data.append(
+      'nombre',
+      nombre
+    );
+
+    data.append(
+      'personas',
+      personas
+    );
+
+
+    try {
+
+      await fetch(
+        RSVP_APPS_SCRIPT_URL,
+        {
+          method: 'POST',
+          body: data,
+          mode: 'no-cors'
+        }
+      );
+
+
+      rsvpForm.reset();
+
+
+      rsvpStatus.textContent =
+        '¡Gracias! Tu asistencia quedó registrada. Nos encantará compartir este día contigo.';
+
+      rsvpStatus.classList.add(
+        'show'
+      );
+
+
+    } catch (error) {
+
+      console.error(
+        'Error al enviar RSVP:',
+        error
+      );
+
+      rsvpStatus.textContent =
+        'No pudimos registrar la confirmación. Por favor intenta nuevamente.';
+
+      rsvpStatus.classList.add(
+        'show'
+      );
+
+
+    } finally {
+
+      rsvpSubmit.disabled =
+        false;
+
+      rsvpSubmit.textContent =
+        'Confirmar asistencia';
+
+    }
+
+  }
+);
+
+
+/* ── GALLERY ── */
+
+const track =
+  document.getElementById('g-track');
+
+const slides =
+  track.querySelectorAll(
+    '.gallery-slide'
+  );
+
+const dotsC =
+  document.getElementById('g-dots');
+
+let cur = 0;
+
+
+slides.forEach(
+  (_, i) => {
+
+    const b =
+      document.createElement(
+        'button'
+      );
+
+    b.className =
+      'g-dot' +
+      (
+        i === 0
+          ? ' on'
+          : ''
+      );
+
+    b.setAttribute(
+      'aria-label',
+      'Foto ' + (i + 1)
+    );
+
+    b.addEventListener(
+      'click',
+      () => go(i)
+    );
+
+    dotsC.appendChild(b);
+
+  }
+);
+
+
+function slideW() {
+
+  return (
+    slides[0]
+      .getBoundingClientRect()
+      .width
+    +
+    12.8
+  );
+
+}
+
+
+function go(i) {
+
+  cur =
+    (
+      (i % slides.length) +
+      slides.length
+    ) %
+    slides.length;
+
+  track.style.transform =
+    'translateX(-' +
+    (
+      cur * slideW()
+    ) +
+    'px)';
+
+  dotsC
+    .querySelectorAll('.g-dot')
+    .forEach(
+      (d, j) =>
+        d.classList.toggle(
+          'on',
+          j === cur
+        )
+    );
+
+}
+
+
+document
+  .getElementById('g-prev')
+  .addEventListener(
+    'click',
+    () => go(cur - 1)
+  );
+
+
+document
+  .getElementById('g-next')
+  .addEventListener(
+    'click',
+    () => go(cur + 1)
+  );
+
+
+let tx = 0;
+
+
+track.addEventListener(
+  'touchstart',
+  e => {
+
+    tx =
+      e.touches[0].clientX;
+
+  },
+  {
+    passive: true
+  }
+);
+
+
+track.addEventListener(
+  'touchend',
+  e => {
+
+    const dx =
+      e.changedTouches[0].clientX -
+      tx;
+
+    if (
+      Math.abs(dx) > 40
+    ) {
+
+      go(
+        dx < 0
+          ? cur + 1
+          : cur - 1
+      );
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>

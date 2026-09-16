@@ -146,6 +146,7 @@
       background: linear-gradient(145deg, #faf7f1, #e7dfd2);
       border: 1px solid rgba(238,217,144,0.7);
       box-shadow: 0 18px 65px rgba(0,0,0,0.4), 0 0 0 7px rgba(255,255,255,0.03);
+      transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
     }
 
     .env-flap {
@@ -156,8 +157,10 @@
       height: 58%;
       overflow: hidden;
       transform-origin: top center;
-      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 3;
+      transition: transform 0.62s cubic-bezier(0.32, 0, 0.15, 1);
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      z-index: 4;
     }
 
     .env-flap::before {
@@ -188,7 +191,7 @@
       bottom: 0;
       width: 52%;
       height: 68%;
-      z-index: 2;
+      z-index: 3;
     }
 
     .env-fold-left {
@@ -211,6 +214,50 @@
       height: 58%;
       background: linear-gradient(to top, #e9e0d4, #f2ece3);
       z-index: 1;
+    }
+
+    .env-letter {
+      position: absolute;
+      left: 7%;
+      bottom: 7%;
+      width: 86%;
+      height: 78%;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--navy);
+      background: linear-gradient(rgba(255,255,255,0.94), rgba(247,243,238,0.98));
+      border: 1px solid rgba(184,151,58,0.45);
+      box-shadow: 0 8px 24px rgba(17,32,59,0.18);
+      transform: translateY(18%);
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    .env-letter::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(184,151,58,0.22);
+    }
+
+    .env-letter-mark {
+      position: relative;
+      font-family: var(--ff-serif);
+      font-size: clamp(1.8rem, 8vw, 2.5rem);
+      font-style: italic;
+      color: var(--navy);
+    }
+
+    .env-letter-date {
+      position: relative;
+      margin-top: 0.55rem;
+      color: var(--gold);
+      font-size: 0.58rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
     }
 
     .env-seal {
@@ -291,6 +338,49 @@
 
     .envelope-wrap.opening .env-flap {
       transform: rotateX(180deg);
+      transition-delay: 0.24s;
+    }
+
+    .envelope-wrap.opening {
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .envelope-wrap.opening .env-seal {
+      animation: sealRelease 0.3s ease forwards;
+    }
+
+    .envelope-wrap.opening .env-letter {
+      animation: letterRise 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0.78s forwards;
+    }
+
+    .envelope-wrap.opening .env-body {
+      animation: envelopeSettle 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.82s forwards;
+    }
+
+    .envelope-wrap.opening .envelope-intro,
+    .envelope-wrap.opening .envelope-hint {
+      animation: envelopeCopyOut 0.32s ease forwards;
+    }
+
+    @keyframes sealRelease {
+      0% { opacity: 1; transform: translateX(-50%) scale(1); }
+      45% { opacity: 1; transform: translateX(-50%) scale(0.88); }
+      100% { opacity: 0; transform: translateX(-50%) scale(1.18); }
+    }
+
+    @keyframes letterRise {
+      0% { opacity: 0; transform: translateY(18%) scale(0.97); }
+      20% { opacity: 1; }
+      100% { opacity: 1; transform: translateY(-66%) scale(1); }
+    }
+
+    @keyframes envelopeSettle {
+      to { transform: translateY(38px) scale(0.97); }
+    }
+
+    @keyframes envelopeCopyOut {
+      to { opacity: 0; transform: translateY(-8px); }
     }
 
     /* ══ MAIN CONTENT ═════════════════════════════════ */
@@ -1654,6 +1744,18 @@
       .timeline-progress {
         transition: none;
       }
+
+      .env-flap,
+      .env-seal,
+      .env-letter,
+      .env-body,
+      .envelope-intro,
+      .envelope-hint {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+      }
     }
   </style>
 </head>
@@ -1680,6 +1782,11 @@
 
       <div class="env-flap" id="env-flap">
         <div class="env-flap-inner"></div>
+      </div>
+
+      <div class="env-letter" aria-hidden="true">
+        <span class="env-letter-mark">R&amp;G</span>
+        <span class="env-letter-date">28 · 11 · 2026</span>
       </div>
 
       <div class="env-fold-left"></div>
@@ -2818,13 +2925,17 @@ function openEnvelope() {
 
   setTimeout(() => {
 
-    envScreen.classList.add('hidden');
-
     document
       .getElementById('main-content')
       .classList.add('visible');
 
-  }, 650);
+  }, 1350);
+
+  setTimeout(() => {
+
+    envScreen.classList.add('hidden');
+
+  }, 1850);
 
 }
 

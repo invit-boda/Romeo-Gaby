@@ -1747,6 +1747,94 @@
       letter-spacing: 0.16em;
     }
 
+    /* Accesos rápidos: aparecen después de la portada */
+    .quick-actions {
+      position: fixed;
+      right: max(1rem, env(safe-area-inset-right));
+      bottom: max(1rem, env(safe-area-inset-bottom));
+      z-index: 90;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(212,176,90,0.5);
+      border-radius: 999px;
+      background: rgba(20,34,61,0.94);
+      box-shadow: 0 10px 30px rgba(10,20,38,0.24);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    }
+
+    .quick-actions.visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    #sec-map,
+    #sec-rsvp {
+      scroll-margin-top: 1rem;
+    }
+
+    .quick-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-height: 48px;
+      padding: 0 1rem;
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .quick-action + .quick-action {
+      border-left: 1px solid rgba(212,176,90,0.34);
+    }
+
+    .quick-action svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: var(--gold-pale);
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .quick-action:hover {
+      background: rgba(212,176,90,0.13);
+    }
+
+    @media (max-width: 520px) {
+      .quick-actions {
+        right: 50%;
+        bottom: max(0.8rem, env(safe-area-inset-bottom));
+        transform: translate(50%, 12px);
+      }
+
+      .quick-actions.visible {
+        transform: translate(50%, 0);
+      }
+
+      .quick-action {
+        min-height: 46px;
+        padding: 0 0.85rem;
+        font-size: 0.62rem;
+      }
+
+      footer {
+        padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+      }
+    }
+
     /* ══ FINAL ═══════════════════════════════════════ */
 
     #sec-final {
@@ -1833,7 +1921,8 @@
       }
 
       .gallery-track,
-      .gallery-slide img {
+      .gallery-slide img,
+      .quick-actions {
         transition: none !important;
       }
 
@@ -2100,7 +2189,7 @@
         <div class="tl-content">
 
           <p class="tl-time">
-            16:00 hrs
+            5:00 PM
           </p>
 
           <p class="tl-title">
@@ -2146,11 +2235,11 @@
         <div class="tl-content">
 
           <p class="tl-time">
-            18:30 hrs
+            6:00 PM
           </p>
 
           <p class="tl-title">
-            Coctel de bienvenida
+            Cóctel de bienvenida
           </p>
 
           <div class="tl-icon">
@@ -2190,7 +2279,7 @@
         <div class="tl-content">
 
           <p class="tl-time">
-            21:00 hrs
+            9:00 PM
           </p>
 
           <p class="tl-title">
@@ -2236,7 +2325,7 @@
         <div class="tl-content">
 
           <p class="tl-time">
-            22:00 hrs
+            10:00 PM
           </p>
 
           <p class="tl-title">
@@ -2300,14 +2389,14 @@
         <div class="event-cell">
           <p class="event-cell-label">Ceremonia</p>
           <p class="event-cell-value">
-            4:30 PM
+            5:00 PM
           </p>
         </div>
 
         <div class="event-cell">
           <p class="event-cell-label">Recepción</p>
           <p class="event-cell-value">
-            5:30 PM
+            6:00 PM
           </p>
         </div>
 
@@ -2896,17 +2985,17 @@
         id="g-track"
       >
 
-        <div class="gallery-slide"><img src="assets/fotos/espaldas.jpg" alt="Roméo y Gaby contemplando juntos el paisaje" loading="eager" decoding="async" fetchpriority="low" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/propuesta-paisaje.jpg" alt="Roméo entregándole el anillo a Gaby entre las flores" loading="eager" decoding="async" fetchpriority="low" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/propuesta-cercana.jpg" alt="Gaby sonriendo durante la propuesta de matrimonio" loading="eager" decoding="async" fetchpriority="low" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/beso-volcan.jpg" alt="Roméo y Gaby besándose frente al volcán" loading="eager" decoding="async" fetchpriority="low" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/sentados.jpg" alt="Roméo y Gaby sentados juntos frente al paisaje" loading="eager" decoding="async" fetchpriority="low" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/entre-flores.jpg" alt="Roméo y Gaby sonriendo entre las flores" loading="eager" decoding="async" fetchpriority="low" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/caminando.jpg" alt="Roméo y Gaby caminando juntos entre las flores" loading="eager" decoding="async" fetchpriority="low" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/abrazo-anillo.jpg" alt="Abrazo de Roméo y Gaby mostrando el anillo" loading="eager" decoding="async" fetchpriority="low" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/manos.jpg" alt="Roméo y Gaby tomados de la mano" loading="eager" decoding="async" fetchpriority="low" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/beso-muro.jpg" alt="Roméo y Gaby besándose frente a un muro de piedra" loading="eager" decoding="async" fetchpriority="low" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/beso-arco.jpg" alt="Roméo y Gaby besándose bajo un arco de piedra" loading="eager" decoding="async" fetchpriority="low" /></div>
+        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/espaldas.webp" alt="Roméo y Gaby contemplando juntos el paisaje" decoding="async" /></div>
+        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/propuesta-paisaje.webp" alt="Roméo entregándole el anillo a Gaby entre las flores" decoding="async" /></div>
+        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/propuesta-cercana.webp" alt="Gaby sonriendo durante la propuesta de matrimonio" decoding="async" /></div>
+        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/beso-volcan.webp" alt="Roméo y Gaby besándose frente al volcán" decoding="async" /></div>
+        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/sentados.webp" alt="Roméo y Gaby sentados juntos frente al paisaje" decoding="async" /></div>
+        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/entre-flores.webp" alt="Roméo y Gaby sonriendo entre las flores" decoding="async" /></div>
+        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/caminando.webp" alt="Roméo y Gaby caminando juntos entre las flores" decoding="async" /></div>
+        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/abrazo-anillo.webp" alt="Abrazo de Roméo y Gaby mostrando el anillo" decoding="async" /></div>
+        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/manos.webp" alt="Roméo y Gaby tomados de la mano" decoding="async" /></div>
+        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/beso-muro.webp" alt="Roméo y Gaby besándose frente a un muro de piedra" decoding="async" /></div>
+        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/beso-arco.webp" alt="Roméo y Gaby besándose bajo un arco de piedra" decoding="async" /></div>
 
       </div>
 
@@ -3010,6 +3099,28 @@
 
 </main>
 
+<nav
+  class="quick-actions"
+  id="quick-actions"
+  aria-label="Accesos rápidos"
+  aria-hidden="true"
+  inert
+>
+  <a class="quick-action" href="#sec-map">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+      <circle cx="12" cy="10" r="2.5" />
+    </svg>
+    Ubicación
+  </a>
+  <a class="quick-action" href="#sec-rsvp" id="quick-rsvp">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+    Confirmar
+  </a>
+</nav>
+
 
 <script>
 
@@ -3087,6 +3198,9 @@ const heroSection =
 const heroCtaBtn =
   document.getElementById('hero-cta-btn');
 
+const quickActions =
+  document.getElementById('quick-actions');
+
 heroCtaBtn.addEventListener(
   'click',
   () => {
@@ -3097,6 +3211,10 @@ heroCtaBtn.addEventListener(
 
     invitationContent.removeAttribute('inert');
     invitationContent.setAttribute('aria-hidden', 'false');
+
+    quickActions.classList.add('visible');
+    quickActions.removeAttribute('inert');
+    quickActions.setAttribute('aria-hidden', 'false');
 
     document.body.style.overflow = '';
 
@@ -3115,7 +3233,7 @@ heroCtaBtn.addEventListener(
 /* ── COUNTDOWN ── */
 
 const target =
-  new Date('2026-11-28T16:00:00');
+  new Date('2026-11-28T17:00:00');
 
 function tick() {
 
@@ -3364,7 +3482,7 @@ const calendarEvent = {
     'Boda Roméo & Gaby',
 
   start:
-    '20261128T160000',
+    '20261128T170000',
 
   end:
     '20261128T235900',
@@ -3434,7 +3552,7 @@ PRODID:-//Romeo y Gaby//Boda 2026//ES
 BEGIN:VEVENT
 UID:boda-romeo-gaby-28112026
 DTSTAMP:20260817T180000Z
-DTSTART;TZID=America/Guatemala:20261128T160000
+DTSTART;TZID=America/Guatemala:20261128T170000
 DTEND;TZID=America/Guatemala:20261128T235900
 SUMMARY:Boda Roméo & Gaby
 LOCATION:Jardines San Miguel
@@ -3590,11 +3708,120 @@ btnRsvp.addEventListener(
   }
 );
 
+document
+  .getElementById('quick-rsvp')
+  .addEventListener(
+    'click',
+    () => {
+
+      if (!rsvpOpen) {
+        btnRsvp.click();
+      }
+
+      window.setTimeout(
+        () => document.getElementById('rsvp-nombre').focus(),
+        650
+      );
+
+    }
+  );
+
 
 /* ── GOOGLE APPS SCRIPT ── */
 
 const RSVP_APPS_SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbzaPt2RDMWtG3aYM3J5TMF_EWpmLUSfDp2FrLSM3H9evnMc9p8gei0kEqmOr_ciRiRi0Q/exec';
+  'https://script.google.com/macros/s/AKfycbxORTmQnMPMpeF6_CtKler193ZhnUsA9F7OgFyj8PWSkZ7Lg9_0Dwi47z8XVhTdXd8g1A/exec';
+
+let pendingRsvpId = '';
+let pendingRsvpName = '';
+
+function createRsvpId() {
+
+  if (window.crypto && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+
+  return (
+    Date.now().toString(36) +
+    '-' +
+    Math.random().toString(36).slice(2)
+  );
+
+}
+
+function wait(milliseconds) {
+  return new Promise(
+    resolve => window.setTimeout(resolve, milliseconds)
+  );
+}
+
+function checkRsvpRegistration(requestId) {
+
+  return new Promise(resolve => {
+
+    const callbackName =
+      'rsvpVerify_' +
+      Math.random().toString(36).slice(2);
+
+    const script =
+      document.createElement('script');
+
+    let finished = false;
+
+    const finish = registered => {
+
+      if (finished) return;
+      finished = true;
+
+      window.clearTimeout(timeoutId);
+      script.remove();
+      delete window[callbackName];
+      resolve(registered);
+
+    };
+
+    window[callbackName] = response => {
+      finish(Boolean(response && response.registered));
+    };
+
+    script.onerror = () => finish(false);
+
+    script.src =
+      RSVP_APPS_SCRIPT_URL +
+      '?accion=verificar' +
+      '&id=' + encodeURIComponent(requestId) +
+      '&callback=' + encodeURIComponent(callbackName) +
+      '&t=' + Date.now();
+
+    const timeoutId =
+      window.setTimeout(
+        () => finish(false),
+        3500
+      );
+
+    document.head.appendChild(script);
+
+  });
+
+}
+
+async function verifyRsvpRegistration(requestId) {
+
+  const retryDelays = [500, 900, 1400];
+
+  for (const delay of retryDelays) {
+
+    await wait(delay);
+
+    if (await checkRsvpRegistration(requestId)) {
+      return true;
+    }
+
+  }
+
+  return false;
+
+}
 
 
 /* ── ENVÍO DEL RSVP ── */
@@ -3639,9 +3866,22 @@ rsvpForm.addEventListener(
     const data =
       new FormData();
 
+    if (
+      !pendingRsvpId ||
+      pendingRsvpName !== nombre
+    ) {
+      pendingRsvpId = createRsvpId();
+      pendingRsvpName = nombre;
+    }
+
     data.append(
       'nombre',
       nombre
+    );
+
+    data.append(
+      'id',
+      pendingRsvpId
     );
 
     try {
@@ -3655,12 +3895,27 @@ rsvpForm.addEventListener(
         }
       );
 
+      rsvpSubmit.textContent =
+        'Verificando...';
 
-      rsvpForm.reset();
+      const registered =
+        await verifyRsvpRegistration(pendingRsvpId);
 
+      if (registered) {
 
-      rsvpStatus.textContent =
-        '¡Gracias! Tu asistencia quedó registrada. Nos encantará compartir este día contigo.';
+        rsvpForm.reset();
+        pendingRsvpId = '';
+        pendingRsvpName = '';
+
+        rsvpStatus.textContent =
+          '¡Gracias! Tu asistencia quedó registrada. Nos encantará compartir este día contigo.';
+
+      } else {
+
+        rsvpStatus.textContent =
+          'Tu confirmación fue enviada, pero aún no pudimos comprobarla en la lista. Por favor no la envíes nuevamente; puedes intentarlo más tarde o comunicarte con nosotros.';
+
+      }
 
       rsvpStatus.classList.add(
         'show'
@@ -3717,6 +3972,25 @@ const galleryStatus =
 
 let cur = 0;
 
+function loadGalleryImage(index) {
+
+  const normalizedIndex =
+    (
+      (index % slides.length) +
+      slides.length
+    ) %
+    slides.length;
+
+  const image =
+    slides[normalizedIndex].querySelector('img');
+
+  if (!image.dataset.gallerySrc) return;
+
+  image.src = image.dataset.gallerySrc;
+  image.removeAttribute('data-gallery-src');
+
+}
+
 
 function slideW() {
 
@@ -3739,6 +4013,10 @@ function go(i, announce = false) {
       slides.length
     ) %
     slides.length;
+
+  loadGalleryImage(cur);
+  loadGalleryImage(cur + 1);
+  loadGalleryImage(cur - 1);
 
   track.style.transform =
     'translateX(-' +
@@ -3868,6 +4146,9 @@ const galleryObserver =
         entries[0].isIntersecting;
 
       if (galleryInView) {
+
+        loadGalleryImage(0);
+        loadGalleryImage(1);
 
         if (!galleryHasStarted) {
           galleryHasStarted = true;

@@ -107,29 +107,8 @@
 
     .envelope-intro { color: #fff; margin-bottom: 2rem; }
 
-    .envelope-monogram {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.8rem;
-      color: var(--gold-pale);
-      font-family: var(--ff-serif);
-      font-style: italic;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-    }
-
-    .envelope-monogram::before,
-    .envelope-monogram::after {
-      content: '';
-      width: 42px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold-lt));
-    }
-
-    .envelope-monogram::after { transform: rotate(180deg); }
-
     .envelope-title {
-      margin-top: 0.55rem;
+      margin-top: 0;
       font-family: var(--ff-serif);
       font-size: clamp(2rem, 9vw, 3.1rem);
       font-weight: 400;
@@ -492,24 +471,6 @@
       justify-content: center;
     }
 
-    .hero-crest {
-      width: 56px;
-      height: 56px;
-      border: 1px solid rgba(184,151,58,0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transform: rotate(45deg);
-    }
-
-    .hero-crest-inner {
-      transform: rotate(-45deg);
-      font-family: var(--ff-serif);
-      font-style: italic;
-      font-size: 1rem;
-      color: var(--gold-lt);
-    }
-
     #hero-bottom {
       position: relative;
       z-index: 2;
@@ -592,7 +553,10 @@
     }
 
     .hero-cta {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
       margin-top: 1.4rem;
       background: var(--gold);
       color: var(--navy);
@@ -601,16 +565,41 @@
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      padding: 0.9rem 2.4rem;
-      border: 0;
+      min-width: min(280px, calc(100vw - 4rem));
+      padding: 1rem 1.8rem;
+      border: 1px solid rgba(255,255,255,0.3);
       cursor: pointer;
-      transition: background 0.25s;
-      animation: fadeUp 0.9s ease forwards 1.6s;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+      animation:
+        fadeUp 0.9s ease forwards 1.6s,
+        ctaGlow 2.2s ease-in-out 2.6s infinite;
       opacity: 0;
     }
 
-    .hero-cta:hover {
+    .hero-cta:hover,
+    .hero-cta:focus-visible {
       background: var(--gold-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 11px 30px rgba(184,151,58,0.32);
+      outline: 2px solid rgba(255,255,255,0.85);
+      outline-offset: 3px;
+    }
+
+    .hero-cta-icon {
+      font-size: 1rem;
+      line-height: 1;
+      animation: ctaArrow 1.4s ease-in-out infinite;
+    }
+
+    @keyframes ctaGlow {
+      0%, 100% { box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+      50% { box-shadow: 0 8px 30px rgba(212,176,90,0.5); }
+    }
+
+    @keyframes ctaArrow {
+      0%, 100% { transform: translateY(-1px); }
+      50% { transform: translateY(3px); }
     }
 
     .scroll-hint {
@@ -1836,7 +1825,6 @@
     tabindex="0"
   >
     <div class="envelope-intro">
-      <div class="envelope-monogram">R&amp;G</div>
       <h1 class="envelope-title"><em>Roméo</em> &amp; <em>Gaby</em></h1>
       <p class="envelope-subtitle">Tenemos algo especial para ti</p>
     </div>
@@ -1858,7 +1846,7 @@
 
       <div class="env-seal" id="env-seal">
         <div class="seal-circle">
-          <span class="seal-text">R&amp;G</span>
+          <span class="seal-text" aria-hidden="true">✦</span>
         </div>
       </div>
 
@@ -1882,9 +1870,6 @@
     <div class="hero-frame" aria-hidden="true"></div>
 
     <div id="hero-top">
-      <div class="hero-crest">
-        <span class="hero-crest-inner">R&G</span>
-      </div>
     </div>
 
     <div id="hero-bottom">
@@ -1916,7 +1901,8 @@
         id="hero-cta-btn"
         class="hero-cta"
       >
-        Ver nuestra invitación
+        <span>Ver la invitación</span>
+        <span class="hero-cta-icon" aria-hidden="true">↓</span>
       </button>
 
     </div>

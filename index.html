@@ -2543,54 +2543,6 @@
 
             </div>
 
-
-            <!-- PERSONAS -->
-
-            <div class="rsvp-field">
-
-              <label for="rsvp-personas">
-                Número de personas
-              </label>
-
-              <select
-                id="rsvp-personas"
-                name="personas"
-                required
-              >
-
-                <option value="" selected disabled>
-                  Selecciona una opción
-                </option>
-
-                <option value="1">
-                  1 persona
-                </option>
-
-                <option value="2">
-                  2 personas
-                </option>
-
-                <option value="3">
-                  3 personas
-                </option>
-
-                <option value="4">
-                  4 personas
-                </option>
-
-                <option value="5">
-                  5 personas
-                </option>
-
-                <option value="6">
-                  6 personas
-                </option>
-
-              </select>
-
-            </div>
-
-
             <!-- BOTÓN -->
 
             <button
@@ -3570,16 +3522,10 @@ rsvpForm.addEventListener(
         .value
         .trim();
 
-    const personas =
-      document
-        .getElementById('rsvp-personas')
-        .value;
-
-
-    if (!nombre || !personas) {
+    if (!nombre) {
 
       rsvpStatus.textContent =
-        'Por favor completa tu nombre y el número de personas.';
+        'Por favor escribe tu nombre completo.';
 
       rsvpStatus.classList.add(
         'show'
@@ -3600,14 +3546,6 @@ rsvpForm.addEventListener(
     );
 
 
-    /*
-     * Creamos solamente los dos campos
-     * que actualmente necesitamos:
-     *
-     * nombre
-     * personas
-     */
-
     const data =
       new FormData();
 
@@ -3615,12 +3553,6 @@ rsvpForm.addEventListener(
       'nombre',
       nombre
     );
-
-    data.append(
-      'personas',
-      personas
-    );
-
 
     try {
 

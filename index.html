@@ -3732,9 +3732,6 @@ document
 const RSVP_APPS_SCRIPT_URL =
   'https://script.google.com/macros/s/AKfycbxORTmQnMPMpeF6_CtKler193ZhnUsA9F7OgFyj8PWSkZ7Lg9_0Dwi47z8XVhTdXd8g1A/exec';
 
-let pendingRsvpId = '';
-let pendingRsvpName = '';
-
 function createRsvpId() {
 
   if (window.crypto && crypto.randomUUID) {
@@ -3746,80 +3743,6 @@ function createRsvpId() {
     '-' +
     Math.random().toString(36).slice(2)
   );
-
-}
-
-function wait(milliseconds) {
-  return new Promise(
-    resolve => window.setTimeout(resolve, milliseconds)
-  );
-}
-
-function checkRsvpRegistration(requestId) {
-
-  return new Promise(resolve => {
-
-    const callbackName =
-      'rsvpVerify_' +
-      Math.random().toString(36).slice(2);
-
-    const script =
-      document.createElement('script');
-
-    let finished = false;
-
-    const finish = registered => {
-
-      if (finished) return;
-      finished = true;
-
-      window.clearTimeout(timeoutId);
-      script.remove();
-      delete window[callbackName];
-      resolve(registered);
-
-    };
-
-    window[callbackName] = response => {
-      finish(Boolean(response && response.registered));
-    };
-
-    script.onerror = () => finish(false);
-
-    script.src =
-      RSVP_APPS_SCRIPT_URL +
-      '?accion=verificar' +
-      '&id=' + encodeURIComponent(requestId) +
-      '&callback=' + encodeURIComponent(callbackName) +
-      '&t=' + Date.now();
-
-    const timeoutId =
-      window.setTimeout(
-        () => finish(false),
-        3500
-      );
-
-    document.head.appendChild(script);
-
-  });
-
-}
-
-async function verifyRsvpRegistration(requestId) {
-
-  const retryDelays = [500, 900, 1400];
-
-  for (const delay of retryDelays) {
-
-    await wait(delay);
-
-    if (await checkRsvpRegistration(requestId)) {
-      return true;
-    }
-
-  }
-
-  return false;
 
 }
 
@@ -3866,13 +3789,8 @@ rsvpForm.addEventListener(
     const data =
       new FormData();
 
-    if (
-      !pendingRsvpId ||
-      pendingRsvpName !== nombre
-    ) {
-      pendingRsvpId = createRsvpId();
-      pendingRsvpName = nombre;
-    }
+    const requestId =
+      createRsvpId();
 
     data.append(
       'nombre',
@@ -3881,7 +3799,7 @@ rsvpForm.addEventListener(
 
     data.append(
       'id',
-      pendingRsvpId
+      requestId
     );
 
     try {
@@ -3895,27 +3813,10 @@ rsvpForm.addEventListener(
         }
       );
 
-      rsvpSubmit.textContent =
-        'Verificando...';
+      rsvpForm.reset();
 
-      const registered =
-        await verifyRsvpRegistration(pendingRsvpId);
-
-      if (registered) {
-
-        rsvpForm.reset();
-        pendingRsvpId = '';
-        pendingRsvpName = '';
-
-        rsvpStatus.textContent =
-          '¡Gracias! Hemos recibido tu confirmación.';
-
-      } else {
-
-        rsvpStatus.textContent =
-          'No pudimos confirmar tu asistencia. Intenta nuevamente.';
-
-      }
+      rsvpStatus.textContent =
+        'Gracias por tu confirmación, estaremos felices de verte.';
 
       rsvpStatus.classList.add(
         'show'

@@ -35,11 +35,12 @@
       --navy-mid:  #243459;
       --navy-lt:   #2E4270;
       --gold:      #B8973A;
+      --gold-text: #80651C;
       --gold-lt:   #D4B05A;
       --gold-pale: #EED990;
       --text:      #2C2418;
       --text-mid:  #5C4F3A;
-      --text-lt:   #8A7A65;
+      --text-lt:   #705F50;
       --ff-serif: 'Playfair Display', Georgia, serif;
       --ff-sub:   'Cormorant Garamond', Georgia, serif;
       --ff-sans:  'Jost', system-ui, sans-serif;
@@ -72,6 +73,24 @@
     a {
       color: inherit;
       text-decoration: none;
+    }
+
+    :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 2px;
+      box-shadow: 0 0 0 5px var(--navy);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     /* ══ ENVELOPE SCREEN ═══════════════════════════════ ---*/
@@ -240,8 +259,8 @@
     .env-letter-date {
       position: relative;
       margin-top: 0.55rem;
-      color: var(--gold);
-      font-size: 0.58rem;
+      color: var(--gold-text);
+      font-size: 0.68rem;
       letter-spacing: 0.28em;
       text-transform: uppercase;
     }
@@ -712,10 +731,10 @@
     }
 
     .sec-tag {
-      font-size: 0.6rem;
+      font-size: 0.7rem;
       letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--gold-text);
       margin-bottom: 1rem;
     }
 
@@ -737,7 +756,7 @@
 
     h2 em {
       font-style: italic;
-      color: var(--gold);
+      color: var(--gold-text);
     }
 
     .body-copy {
@@ -837,7 +856,7 @@
       font-family: var(--ff-sub);
       font-style: italic;
       font-size: 1.1rem;
-      color: var(--gold);
+      color: var(--gold-text);
     }
 
     /* ══ TIMELINE ════════════════════════════════════ */
@@ -1074,10 +1093,10 @@
     }
 
     .location-kind {
-      font-size: 0.58rem;
+      font-size: 0.68rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--gold-text);
     }
 
     .location-name {
@@ -1170,99 +1189,99 @@
       max-width: 400px;
       margin: 1.5rem auto 0;
     }
-    
+
     .btn-calendar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
       padding: 1rem 1.4rem;
-    
+
       border: 1px solid rgba(184,151,58,0.55);
       background: transparent;
-    
+
       color: var(--gold-pale);
-    
+
       font-family: var(--ff-sans);
       font-size: 0.68rem;
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-    
+
       cursor: pointer;
-    
+
       transition:
         background 0.25s,
         color 0.25s;
     }
-    
+
     .btn-calendar:hover {
       background: var(--gold);
       color: var(--navy);
     }
-    
+
     .calendar-chevron {
       font-size: 0.8rem;
       transition: transform 0.3s;
     }
-    
+
     .calendar-chevron.open {
       transform: rotate(180deg);
     }
-    
+
     .calendar-panel {
       overflow: hidden;
       max-height: 0;
-    
+
       transition: max-height 0.4s ease;
     }
-    
+
     .calendar-panel.open {
       max-height: 220px;
     }
-    
+
     .calendar-inner {
       border: 1px solid rgba(184,151,58,0.3);
       border-top: none;
-    
+
       background: var(--navy-mid);
-    
+
       padding: 1.2rem;
     }
-    
+
     .calendar-option {
       display: block;
-    
+
       width: 100%;
-    
+
       padding: 0.9rem 1rem;
-    
+
       border: 1px solid rgba(238,217,144,0.25);
-    
+
       background: transparent;
-    
+
       color: #fff;
-    
+
       font-family: var(--ff-sans);
       font-size: 0.68rem;
       font-weight: 400;
-    
+
       letter-spacing: 0.15em;
       text-transform: uppercase;
-    
+
       text-align: center;
-    
+
       cursor: pointer;
-    
+
       transition:
         background 0.25s,
         color 0.25s;
     }
-    
+
     .calendar-option + .calendar-option {
       margin-top: 0.7rem;
     }
-    
+
     .calendar-option:hover {
       background: var(--gold);
       color: var(--navy);
@@ -1356,7 +1375,7 @@
     .rsvp-field label {
       display: block;
       margin-bottom: 0.4rem;
-      font-size: 0.6rem;
+      font-size: 0.7rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--text-lt);
@@ -1371,13 +1390,12 @@
       color: var(--text);
       font-family: var(--ff-sans);
       font-size: 0.82rem;
-      outline: none;
       border-radius: 0;
     }
 
     .rsvp-field input:focus,
     .rsvp-field select:focus {
-      border-color: var(--gold);
+      border-color: var(--navy);
     }
 
     .rsvp-submit {
@@ -1584,7 +1602,7 @@
     }
 
     .cuenta-key {
-      font-size: 0.62rem;
+      font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--text-lt);
@@ -1699,6 +1717,10 @@
       transition: border-color 0.25s, background 0.25s;
     }
 
+    .g-toggle {
+      font-size: 0.78rem;
+    }
+
     .g-btn:hover {
       border-color: var(--gold);
       background: rgba(184,151,58,0.12);
@@ -1752,7 +1774,7 @@
     }
 
     .final-sig-label {
-      font-size: 0.58rem;
+      font-size: 0.68rem;
       letter-spacing: 0.38em;
       text-transform: uppercase;
       color: var(--text-lt);
@@ -1775,10 +1797,10 @@
     }
 
     footer p {
-      font-size: 0.6rem;
+      font-size: 0.68rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.7);
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1788,6 +1810,7 @@
       .hero-verse,
       .hero-date-pill,
       .hero-cta,
+      .hero-cta-icon,
       .scroll-hint {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
@@ -1795,6 +1818,11 @@
 
       .timeline-progress {
         transition: none;
+      }
+
+      .gallery-track,
+      .gallery-slide img {
+        transition: none !important;
       }
 
       .env-flap,
@@ -1859,11 +1887,11 @@
 
 <!-- ══ MAIN CONTENT ═══════════════════════════════ -->
 
-<div id="main-content">
+<main id="main-content" aria-hidden="true" inert>
 
   <!-- HERO / PORTADA -->
 
-  <section id="hero">
+  <section id="hero" aria-label="Portada de la invitación">
 
     <div id="hero-photo"></div>
 
@@ -1908,6 +1936,9 @@
     </div>
 
   </section>
+
+
+  <div id="invitation-content" aria-hidden="true" inert>
 
 
   <!-- FRANJA DE FOTO -->
@@ -2022,7 +2053,7 @@
 
     <div class="timeline-header reveal">
 
-      <p class="sec-tag" style="color:var(--gold);">
+      <p class="sec-tag" style="color:var(--gold-text);">
         El gran día
       </p>
 
@@ -2311,6 +2342,7 @@
     <span
       class="calendar-chevron"
       id="calendar-chevron"
+      aria-hidden="true"
     >
       &#8964;
     </span>
@@ -2322,6 +2354,7 @@
     class="calendar-panel"
     id="calendar-panel"
     aria-hidden="true"
+    inert
   >
 
     <div class="calendar-inner">
@@ -2497,6 +2530,7 @@
         <span
           class="rsvp-chevron"
           id="rsvp-chevron"
+          aria-hidden="true"
         >
           &#8964;
         </span>
@@ -2510,6 +2544,7 @@
         class="rsvp-panel"
         id="rsvp-panel"
         aria-hidden="true"
+        inert
       >
 
         <div class="rsvp-inner">
@@ -2731,9 +2766,11 @@
       <!-- BOTÓN DESPLEGABLE -->
 
       <button
+        type="button"
         class="btn-cuenta"
         id="btn-cuenta"
         aria-expanded="false"
+        aria-controls="cuenta-panel"
       >
 
         <span>
@@ -2743,6 +2780,7 @@
         <span
           class="cuenta-chevron"
           id="cuenta-chevron"
+          aria-hidden="true"
         >
           &#8964;
         </span>
@@ -2756,6 +2794,7 @@
         class="cuenta-panel"
         id="cuenta-panel"
         aria-hidden="true"
+        inert
       >
 
         <div class="cuenta-inner">
@@ -2865,6 +2904,7 @@
     <div class="gallery-controls">
 
       <button
+        type="button"
         class="g-btn"
         id="g-prev"
         aria-label="Anterior"
@@ -2872,15 +2912,28 @@
         &#8592;
       </button>
 
-      <div class="gallery-counter" id="g-counter" aria-live="polite">01 / 11</div>
+      <div class="gallery-counter" id="g-counter">01 / 11</div>
 
       <button
+        type="button"
         class="g-btn"
         id="g-next"
         aria-label="Siguiente"
       >
         &#8594;
       </button>
+
+      <button
+        type="button"
+        class="g-btn g-toggle"
+        id="g-toggle"
+        aria-label="Pausar galería"
+        aria-pressed="false"
+      >
+        <span aria-hidden="true">Ⅱ</span>
+      </button>
+
+      <p class="sr-only" id="gallery-status" aria-live="polite"></p>
 
     </div>
 
@@ -2941,7 +2994,9 @@
 
   </footer>
 
-</div>
+  </div>
+
+</main>
 
 
 <script>
@@ -2950,6 +3005,10 @@
 
 const envScreen = document.getElementById('envelope-screen');
 const envWrap   = document.getElementById('env-wrap');
+const mainContent = document.getElementById('main-content');
+const invitationContent = document.getElementById('invitation-content');
+const reducedMotionQuery =
+  window.matchMedia('(prefers-reduced-motion: reduce)');
 
 let opened = false;
 
@@ -2961,19 +3020,28 @@ function openEnvelope() {
 
   envWrap.classList.add('opening');
 
+  const contentRevealDelay =
+    reducedMotionQuery.matches ? 0 : 1350;
+
+  const envelopeFinishDelay =
+    reducedMotionQuery.matches ? 50 : 1850;
+
   setTimeout(() => {
 
-    document
-      .getElementById('main-content')
-      .classList.add('visible');
+    mainContent.classList.add('visible');
+    mainContent.removeAttribute('inert');
+    mainContent.setAttribute('aria-hidden', 'false');
 
-  }, 1350);
+  }, contentRevealDelay);
 
   setTimeout(() => {
 
     envScreen.classList.add('hidden');
+    envScreen.setAttribute('aria-hidden', 'true');
+    envScreen.inert = true;
+    heroCtaBtn.focus({ preventScroll: true });
 
-  }, 1850);
+  }, envelopeFinishDelay);
 
 }
 
@@ -3012,10 +3080,21 @@ heroCtaBtn.addEventListener(
   () => {
 
     heroSection.classList.add('gone');
+    heroSection.setAttribute('aria-hidden', 'true');
+    heroSection.inert = true;
+
+    invitationContent.removeAttribute('inert');
+    invitationContent.setAttribute('aria-hidden', 'false');
 
     document.body.style.overflow = '';
 
     window.scrollTo(0, 0);
+
+    const firstInvitationHeading =
+      document.querySelector('#sec-countdown h2');
+
+    firstInvitationHeading.tabIndex = -1;
+    firstInvitationHeading.focus({ preventScroll: true });
 
   }
 );
@@ -3256,6 +3335,9 @@ btnCalendar.addEventListener(
       !calendarOpen
     );
 
+    calendarPanel.inert =
+      !calendarOpen;
+
   }
 );
 
@@ -3433,6 +3515,9 @@ btnCuenta.addEventListener(
       !cuentaOpen
     );
 
+    cuentaPanel.inert =
+      !cuentaOpen;
+
   }
 );
 
@@ -3486,6 +3571,9 @@ btnRsvp.addEventListener(
       'aria-hidden',
       !rsvpOpen
     );
+
+    rsvpPanel.inert =
+      !rsvpOpen;
 
   }
 );
@@ -3609,6 +3697,12 @@ const slides =
 const galleryCounter =
   document.getElementById('g-counter');
 
+const galleryToggle =
+  document.getElementById('g-toggle');
+
+const galleryStatus =
+  document.getElementById('gallery-status');
+
 let cur = 0;
 
 
@@ -3625,7 +3719,7 @@ function slideW() {
 }
 
 
-function go(i) {
+function go(i, announce = false) {
 
   cur =
     (
@@ -3646,6 +3740,14 @@ function go(i) {
     ' / ' +
     String(slides.length).padStart(2, '0');
 
+  if (announce) {
+    galleryStatus.textContent =
+      'Foto ' +
+      String(cur + 1) +
+      ' de ' +
+      String(slides.length);
+  }
+
 }
 
 
@@ -3654,7 +3756,7 @@ document
   .addEventListener(
     'click',
     () => {
-      go(cur - 1);
+      go(cur - 1, true);
       restartGalleryAutoPlay();
     }
   );
@@ -3664,7 +3766,7 @@ document
   .addEventListener(
     'click',
     () => {
-      go(cur + 1);
+      go(cur + 1, true);
       restartGalleryAutoPlay();
     }
   );
@@ -3673,12 +3775,32 @@ document
 let galleryAutoPlay;
 let galleryInView = false;
 let galleryHasStarted = false;
+let galleryPaused = reducedMotionQuery.matches;
+
+function updateGalleryToggle() {
+
+  galleryToggle.setAttribute(
+    'aria-pressed',
+    galleryPaused
+  );
+
+  galleryToggle.setAttribute(
+    'aria-label',
+    galleryPaused
+      ? 'Reproducir galería'
+      : 'Pausar galería'
+  );
+
+  galleryToggle.querySelector('span').textContent =
+    galleryPaused ? '▶' : 'Ⅱ';
+
+}
 
 function restartGalleryAutoPlay() {
 
   clearInterval(galleryAutoPlay);
 
-  if (!galleryInView) return;
+  if (!galleryInView || galleryPaused) return;
 
   galleryAutoPlay = setInterval(
     () => go(cur + 1),
@@ -3686,6 +3808,42 @@ function restartGalleryAutoPlay() {
   );
 
 }
+
+galleryToggle.addEventListener(
+  'click',
+  () => {
+
+    galleryPaused = !galleryPaused;
+    updateGalleryToggle();
+
+    galleryStatus.textContent =
+      galleryPaused
+        ? 'Galería pausada'
+        : 'Reproducción automática activada';
+
+    if (galleryPaused) {
+      clearInterval(galleryAutoPlay);
+    } else {
+      restartGalleryAutoPlay();
+    }
+
+  }
+);
+
+reducedMotionQuery.addEventListener(
+  'change',
+  event => {
+
+    if (!event.matches) return;
+
+    galleryPaused = true;
+    clearInterval(galleryAutoPlay);
+    updateGalleryToggle();
+
+  }
+);
+
+updateGalleryToggle();
 
 const gallerySection =
   document.getElementById('sec-gallery');
@@ -3769,7 +3927,8 @@ track.addEventListener(
       go(
         dx < 0
           ? cur + 1
-          : cur - 1
+          : cur - 1,
+        true
       );
 
       restartGalleryAutoPlay();

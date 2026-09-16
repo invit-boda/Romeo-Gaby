@@ -2985,17 +2985,17 @@
         id="g-track"
       >
 
-        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/espaldas.webp" alt="Roméo y Gaby contemplando juntos el paisaje" decoding="async" /></div>
-        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/propuesta-paisaje.webp" alt="Roméo entregándole el anillo a Gaby entre las flores" decoding="async" /></div>
-        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/propuesta-cercana.webp" alt="Gaby sonriendo durante la propuesta de matrimonio" decoding="async" /></div>
-        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/beso-volcan.webp" alt="Roméo y Gaby besándose frente al volcán" decoding="async" /></div>
-        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/sentados.webp" alt="Roméo y Gaby sentados juntos frente al paisaje" decoding="async" /></div>
-        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/entre-flores.webp" alt="Roméo y Gaby sonriendo entre las flores" decoding="async" /></div>
-        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/caminando.webp" alt="Roméo y Gaby caminando juntos entre las flores" decoding="async" /></div>
-        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/abrazo-anillo.webp" alt="Abrazo de Roméo y Gaby mostrando el anillo" decoding="async" /></div>
-        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/manos.webp" alt="Roméo y Gaby tomados de la mano" decoding="async" /></div>
-        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/beso-muro.webp" alt="Roméo y Gaby besándose frente a un muro de piedra" decoding="async" /></div>
-        <div class="gallery-slide"><img data-gallery-src="assets/fotos/opt/beso-arco.webp" alt="Roméo y Gaby besándose bajo un arco de piedra" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/espaldas.webp" alt="Roméo y Gaby contemplando juntos el paisaje" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/propuesta-paisaje.webp" alt="Roméo entregándole el anillo a Gaby entre las flores" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/propuesta-cercana.webp" alt="Gaby sonriendo durante la propuesta de matrimonio" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/beso-volcan.webp" alt="Roméo y Gaby besándose frente al volcán" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/sentados.webp" alt="Roméo y Gaby sentados juntos frente al paisaje" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/entre-flores.webp" alt="Roméo y Gaby sonriendo entre las flores" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/caminando.webp" alt="Roméo y Gaby caminando juntos entre las flores" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/abrazo-anillo.webp" alt="Abrazo de Roméo y Gaby mostrando el anillo" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/manos.webp" alt="Roméo y Gaby tomados de la mano" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/beso-muro.webp" alt="Roméo y Gaby besándose frente a un muro de piedra" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/beso-arco.webp" alt="Roméo y Gaby besándose bajo un arco de piedra" loading="lazy" decoding="async" /></div>
 
       </div>
 
@@ -3908,12 +3908,12 @@ rsvpForm.addEventListener(
         pendingRsvpName = '';
 
         rsvpStatus.textContent =
-          '¡Gracias! Tu asistencia quedó registrada. Nos encantará compartir este día contigo.';
+          '¡Gracias! Hemos recibido tu confirmación.';
 
       } else {
 
         rsvpStatus.textContent =
-          'Tu confirmación fue enviada, pero aún no pudimos comprobarla en la lista. Por favor no la envíes nuevamente; puedes intentarlo más tarde o comunicarte con nosotros.';
+          'No pudimos confirmar tu asistencia. Intenta nuevamente.';
 
       }
 
@@ -3972,25 +3972,6 @@ const galleryStatus =
 
 let cur = 0;
 
-function loadGalleryImage(index) {
-
-  const normalizedIndex =
-    (
-      (index % slides.length) +
-      slides.length
-    ) %
-    slides.length;
-
-  const image =
-    slides[normalizedIndex].querySelector('img');
-
-  if (!image.dataset.gallerySrc) return;
-
-  image.src = image.dataset.gallerySrc;
-  image.removeAttribute('data-gallery-src');
-
-}
-
 
 function slideW() {
 
@@ -4013,10 +3994,6 @@ function go(i, announce = false) {
       slides.length
     ) %
     slides.length;
-
-  loadGalleryImage(cur);
-  loadGalleryImage(cur + 1);
-  loadGalleryImage(cur - 1);
 
   track.style.transform =
     'translateX(-' +
@@ -4146,9 +4123,6 @@ const galleryObserver =
         entries[0].isIntersecting;
 
       if (galleryInView) {
-
-        loadGalleryImage(0);
-        loadGalleryImage(1);
 
         if (!galleryHasStarted) {
           galleryHasStarted = true;

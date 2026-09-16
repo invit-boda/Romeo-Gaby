@@ -450,15 +450,29 @@
       background-position: center 20%;
     }
 
+    #hero-photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.16;
+      mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.75'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
     #hero-photo::after {
       content: '';
       position: absolute;
       inset: 0;
+      z-index: 2;
       background: linear-gradient(
         to bottom,
-        rgba(26,43,74,0.18) 0%,
-        rgba(26,43,74,0.3) 45%,
-        rgba(26,43,74,0.88) 80%,
+        rgba(14,27,50,0.48) 0%,
+        rgba(20,36,65,0.52) 42%,
+        rgba(18,33,60,0.82) 72%,
+        rgba(26,43,74,0.96) 90%,
         var(--navy) 100%
       );
     }
@@ -505,6 +519,7 @@
       margin-bottom: 0.8rem;
       animation: fadeUp 0.9s ease forwards 0.4s;
       opacity: 0;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.75);
     }
 
     .hero-names {
@@ -519,6 +534,7 @@
     .hero-names em {
       font-style: italic;
       color: var(--gold-pale);
+      text-shadow: 0 3px 18px rgba(0,0,0,0.58);
     }
 
     .hero-amp {
@@ -540,6 +556,7 @@
       line-height: 1.7;
       animation: fadeUp 0.9s ease forwards 1s;
       opacity: 0;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.72);
     }
 
     .hero-verse cite {
@@ -554,14 +571,17 @@
     .hero-date-pill {
       display: inline-block;
       margin-top: 2rem;
-      padding: 0.55rem 1.8rem;
+      padding: 0.62rem clamp(0.7rem, 4vw, 1.8rem);
       border: 1px solid rgba(184,151,58,0.5);
-      font-size: 0.68rem;
-      letter-spacing: 0.28em;
+      max-width: calc(100vw - 3rem);
+      font-size: clamp(0.5rem, 2vw, 0.68rem);
+      letter-spacing: clamp(0.1em, 0.8vw, 0.28em);
+      white-space: nowrap;
       text-transform: uppercase;
       color: var(--gold-pale);
       animation: fadeUp 0.9s ease forwards 1.3s;
       opacity: 0;
+      text-shadow: 0 2px 9px rgba(0,0,0,0.7);
     }
 
     .hero-cta {
@@ -2806,18 +2826,18 @@
         id="g-track"
       >
 
-        <div class="gallery-slide"><img src="assets/fotos/espaldas.jpg" alt="Roméo y Gaby contemplando juntos el paisaje" loading="lazy" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/propuesta-paisaje.jpg" alt="Roméo entregándole el anillo a Gaby entre las flores" loading="lazy" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/propuesta-cercana.jpg" alt="Gaby sonriendo durante la propuesta de matrimonio" loading="lazy" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/beso-volcan.jpg" alt="Roméo y Gaby besándose frente al volcán" loading="lazy" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/sentados.jpg" alt="Roméo y Gaby sentados juntos frente al paisaje" loading="lazy" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/momento-divertido.jpg" alt="Roméo y Gaby compartiendo un momento divertido" loading="lazy" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/entre-flores.jpg" alt="Roméo y Gaby sonriendo entre las flores" loading="lazy" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/caminando.jpg" alt="Roméo y Gaby caminando juntos entre las flores" loading="lazy" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/abrazo-anillo.jpg" alt="Abrazo de Roméo y Gaby mostrando el anillo" loading="lazy" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/manos.jpg" alt="Roméo y Gaby tomados de la mano" loading="lazy" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/beso-muro.jpg" alt="Roméo y Gaby besándose frente a un muro de piedra" loading="lazy" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/beso-arco.jpg" alt="Roméo y Gaby besándose bajo un arco de piedra" loading="lazy" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/espaldas.jpg" alt="Roméo y Gaby contemplando juntos el paisaje" loading="eager" decoding="async" fetchpriority="low" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/propuesta-paisaje.jpg" alt="Roméo entregándole el anillo a Gaby entre las flores" loading="eager" decoding="async" fetchpriority="low" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/propuesta-cercana.jpg" alt="Gaby sonriendo durante la propuesta de matrimonio" loading="eager" decoding="async" fetchpriority="low" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/beso-volcan.jpg" alt="Roméo y Gaby besándose frente al volcán" loading="eager" decoding="async" fetchpriority="low" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/sentados.jpg" alt="Roméo y Gaby sentados juntos frente al paisaje" loading="eager" decoding="async" fetchpriority="low" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/momento-divertido.jpg" alt="Roméo y Gaby compartiendo un momento divertido" loading="eager" decoding="async" fetchpriority="low" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/entre-flores.jpg" alt="Roméo y Gaby sonriendo entre las flores" loading="eager" decoding="async" fetchpriority="low" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/caminando.jpg" alt="Roméo y Gaby caminando juntos entre las flores" loading="eager" decoding="async" fetchpriority="low" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/abrazo-anillo.jpg" alt="Abrazo de Roméo y Gaby mostrando el anillo" loading="eager" decoding="async" fetchpriority="low" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/manos.jpg" alt="Roméo y Gaby tomados de la mano" loading="eager" decoding="async" fetchpriority="low" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/beso-muro.jpg" alt="Roméo y Gaby besándose frente a un muro de piedra" loading="eager" decoding="async" fetchpriority="low" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/beso-arco.jpg" alt="Roméo y Gaby besándose bajo un arco de piedra" loading="eager" decoding="async" fetchpriority="low" /></div>
 
       </div>
 
@@ -3653,10 +3673,14 @@ document
 
 
 let galleryAutoPlay;
+let galleryInView = false;
+let galleryHasStarted = false;
 
 function restartGalleryAutoPlay() {
 
   clearInterval(galleryAutoPlay);
+
+  if (!galleryInView) return;
 
   galleryAutoPlay = setInterval(
     () => go(cur + 1),
@@ -3665,7 +3689,36 @@ function restartGalleryAutoPlay() {
 
 }
 
-restartGalleryAutoPlay();
+const gallerySection =
+  document.getElementById('sec-gallery');
+
+const galleryObserver =
+  new IntersectionObserver(
+    entries => {
+
+      galleryInView =
+        entries[0].isIntersecting;
+
+      if (galleryInView) {
+
+        if (!galleryHasStarted) {
+          galleryHasStarted = true;
+          go(0);
+        }
+
+        restartGalleryAutoPlay();
+
+      } else {
+
+        clearInterval(galleryAutoPlay);
+
+      }
+
+    },
+    { threshold: 0.2 }
+  );
+
+galleryObserver.observe(gallerySection);
 
 window.addEventListener(
   'resize',
@@ -3677,7 +3730,7 @@ document.addEventListener(
   () => {
     if (document.hidden) {
       clearInterval(galleryAutoPlay);
-    } else {
+    } else if (galleryInView) {
       restartGalleryAutoPlay();
     }
   }
@@ -3690,6 +3743,8 @@ let tx = 0;
 track.addEventListener(
   'touchstart',
   e => {
+
+    clearInterval(galleryAutoPlay);
 
     tx =
       e.touches[0].clientX;

@@ -8,9 +8,9 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Roméo & Gaby — Nos Casamos" />
   <meta property="og:description" content="Con alegría les invitamos a celebrar el día más especial de nuestras vidas." />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1200&q=80" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+  <meta property="og:image" content="https://invit-boda.github.io/Romeo-Gaby/assets/fotos/anillo-horizontal.jpg" />
+  <meta property="og:image:width" content="2048" />
+  <meta property="og:image:height" content="1152" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%231A2B4A'/%3E%3Cpath%20d='M32,47C13,34,18,17,32,25C46,17,51,34,32,47Z'%20fill='%23D4B05A'/%3E%3C/svg%3E" />
@@ -73,7 +73,9 @@
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: #F0EBE3;
+      background:
+        radial-gradient(circle at 50% 38%, rgba(46,66,112,0.78), transparent 42%),
+        linear-gradient(145deg, #0c172b 0%, #1a2b4a 55%, #101d35 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -88,18 +90,62 @@
 
     .envelope-wrap {
       position: relative;
-      width: min(320px, 85vw);
+      width: min(410px, 88vw);
       cursor: pointer;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
+      text-align: center;
+      perspective: 1000px;
+    }
+
+    .envelope-intro { color: #fff; margin-bottom: 2rem; }
+
+    .envelope-monogram {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: var(--gold-pale);
+      font-family: var(--ff-serif);
+      font-style: italic;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+    }
+
+    .envelope-monogram::before,
+    .envelope-monogram::after {
+      content: '';
+      width: 42px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-lt));
+    }
+
+    .envelope-monogram::after { transform: rotate(180deg); }
+
+    .envelope-title {
+      margin-top: 0.55rem;
+      font-family: var(--ff-serif);
+      font-size: clamp(2rem, 9vw, 3.1rem);
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    .envelope-title em { color: var(--gold-pale); font-weight: 400; }
+
+    .envelope-subtitle {
+      margin-top: 0.65rem;
+      font-family: var(--ff-sub);
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
     }
 
     .env-body {
       position: relative;
       width: 100%;
-      padding-bottom: 145%;
-      background: #F5F0E8;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.1);
+      padding-bottom: 68%;
+      background: linear-gradient(145deg, #faf7f1, #e7dfd2);
+      border: 1px solid rgba(238,217,144,0.7);
+      box-shadow: 0 18px 65px rgba(0,0,0,0.4), 0 0 0 7px rgba(255,255,255,0.03);
     }
 
     .env-flap {
@@ -107,7 +153,7 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 52%;
+      height: 58%;
       overflow: hidden;
       transform-origin: top center;
       transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
@@ -121,7 +167,7 @@
       left: -5%;
       right: -5%;
       height: 100%;
-      background: #EDE7DC;
+      background: linear-gradient(145deg, #f4eee4, #e4dacb);
       clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
       border-bottom: 1px solid rgba(184,151,58,0.2);
     }
@@ -132,7 +178,7 @@
       left: -5%;
       right: -5%;
       height: 100%;
-      background: #E8E2D8;
+      background: linear-gradient(145deg, #e8dfd2, #d9cdbd);
       clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
     }
 
@@ -141,19 +187,19 @@
       position: absolute;
       bottom: 0;
       width: 52%;
-      height: 60%;
+      height: 68%;
       z-index: 2;
     }
 
     .env-fold-left {
       left: 0;
-      background: #EAE4DA;
+      background: linear-gradient(135deg, #eee7dc, #ded3c4);
       clip-path: polygon(0 0, 100% 100%, 0 100%);
     }
 
     .env-fold-right {
       right: 0;
-      background: #E5DFCF;
+      background: linear-gradient(225deg, #e9e1d5, #d9cebf);
       clip-path: polygon(100% 0, 0 100%, 100% 100%);
     }
 
@@ -162,19 +208,19 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 55%;
-      background: #EDE7DC;
+      height: 58%;
+      background: linear-gradient(to top, #e9e0d4, #f2ece3);
       z-index: 1;
     }
 
     .env-seal {
       position: absolute;
-      bottom: 28%;
+      bottom: 31%;
       left: 50%;
       transform: translateX(-50%);
       z-index: 10;
-      width: 90px;
-      height: 90px;
+      width: 82px;
+      height: 82px;
       transition: transform 0.2s ease;
     }
 
@@ -183,8 +229,8 @@
     }
 
     .seal-circle {
-      width: 90px;
-      height: 90px;
+      width: 82px;
+      height: 82px;
       border-radius: 50%;
       background: radial-gradient(
         circle at 35% 35%,
@@ -221,12 +267,26 @@
     .seal-text {
       font-family: var(--ff-serif);
       font-style: italic;
-      font-size: 1rem;
+      font-size: 1.15rem;
       color: rgba(255,255,255,0.9);
       position: relative;
       z-index: 1;
       text-shadow: 0 1px 2px rgba(0,0,0,0.3);
       letter-spacing: 0.03em;
+    }
+
+    .envelope-hint {
+      margin-top: 1.55rem;
+      color: rgba(255,255,255,0.62);
+      font-size: 0.6rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      animation: envelopePulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes envelopePulse {
+      0%, 100% { opacity: 0.55; }
+      50% { opacity: 1; }
     }
 
     .envelope-wrap.opening .env-flap {
@@ -295,7 +355,7 @@
     #hero-photo {
       position: absolute;
       inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&q=80');
+      background-image: url('assets/fotos/portada.jpg');
       background-size: cover;
       background-position: center 20%;
     }
@@ -495,7 +555,7 @@
     .photo-band-img {
       position: absolute;
       inset: 0;
-      background: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1400&q=80') center 30%/cover;
+      background: url('assets/fotos/anillo-horizontal.jpg') center 52%/cover;
     }
 
     .photo-band-img::after {
@@ -1502,23 +1562,13 @@
       background: rgba(184,151,58,0.12);
     }
 
-    .g-dots {
-      display: flex;
-      gap: 0.45rem;
-    }
-
-    .g-dot {
-      width: 5px;
-      height: 5px;
-      background: rgba(255,255,255,0.2);
-      border: 0;
-      cursor: pointer;
-      transition: background 0.25s;
-      padding: 0;
-    }
-
-    .g-dot.on {
-      background: var(--gold);
+    .gallery-counter {
+      min-width: 76px;
+      text-align: center;
+      color: rgba(255,255,255,0.72);
+      font-family: var(--ff-serif);
+      font-size: 0.88rem;
+      letter-spacing: 0.16em;
     }
 
     /* ══ FINAL ═══════════════════════════════════════ */
@@ -1620,6 +1670,12 @@
     aria-label="Abrir invitación"
     tabindex="0"
   >
+    <div class="envelope-intro">
+      <div class="envelope-monogram">R&amp;G</div>
+      <h1 class="envelope-title"><em>Roméo</em> &amp; <em>Gaby</em></h1>
+      <p class="envelope-subtitle">Tenemos algo especial para ti</p>
+    </div>
+
     <div class="env-body">
 
       <div class="env-flap" id="env-flap">
@@ -1632,11 +1688,13 @@
 
       <div class="env-seal" id="env-seal">
         <div class="seal-circle">
-          <span class="seal-text">Abrir</span>
+          <span class="seal-text">R&amp;G</span>
         </div>
       </div>
 
     </div>
+
+    <p class="envelope-hint">Toca el sello para abrir</p>
   </div>
 </div>
 
@@ -2641,45 +2699,18 @@
         id="g-track"
       >
 
-        <div class="gallery-slide">
-          <img
-            src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=75"
-            alt="Fotografía 1"
-            loading="lazy"
-          />
-        </div>
-
-        <div class="gallery-slide">
-          <img
-            src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=75"
-            alt="Fotografía 2"
-            loading="lazy"
-          />
-        </div>
-
-        <div class="gallery-slide">
-          <img
-            src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=600&q=75"
-            alt="Fotografía 3"
-            loading="lazy"
-          />
-        </div>
-
-        <div class="gallery-slide">
-          <img
-            src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=75"
-            alt="Fotografía 4"
-            loading="lazy"
-          />
-        </div>
-
-        <div class="gallery-slide">
-          <img
-            src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=75"
-            alt="Fotografía 5"
-            loading="lazy"
-          />
-        </div>
+        <div class="gallery-slide"><img src="assets/fotos/espaldas.jpg" alt="Roméo y Gaby contemplando juntos el paisaje" loading="lazy" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/propuesta-paisaje.jpg" alt="Roméo entregándole el anillo a Gaby entre las flores" loading="lazy" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/propuesta-cercana.jpg" alt="Gaby sonriendo durante la propuesta de matrimonio" loading="lazy" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/beso-volcan.jpg" alt="Roméo y Gaby besándose frente al volcán" loading="lazy" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/sentados.jpg" alt="Roméo y Gaby sentados juntos frente al paisaje" loading="lazy" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/momento-divertido.jpg" alt="Roméo y Gaby compartiendo un momento divertido" loading="lazy" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/entre-flores.jpg" alt="Roméo y Gaby sonriendo entre las flores" loading="lazy" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/caminando.jpg" alt="Roméo y Gaby caminando juntos entre las flores" loading="lazy" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/abrazo-anillo.jpg" alt="Abrazo de Roméo y Gaby mostrando el anillo" loading="lazy" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/manos.jpg" alt="Roméo y Gaby tomados de la mano" loading="lazy" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/beso-muro.jpg" alt="Roméo y Gaby besándose frente a un muro de piedra" loading="lazy" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/beso-arco.jpg" alt="Roméo y Gaby besándose bajo un arco de piedra" loading="lazy" /></div>
 
       </div>
 
@@ -2696,10 +2727,7 @@
         &#8592;
       </button>
 
-      <div
-        class="g-dots"
-        id="g-dots"
-      ></div>
+      <div class="gallery-counter" id="g-counter" aria-live="polite">01 / 12</div>
 
       <button
         class="g-btn"
@@ -3449,42 +3477,10 @@ const slides =
     '.gallery-slide'
   );
 
-const dotsC =
-  document.getElementById('g-dots');
+const galleryCounter =
+  document.getElementById('g-counter');
 
 let cur = 0;
-
-
-slides.forEach(
-  (_, i) => {
-
-    const b =
-      document.createElement(
-        'button'
-      );
-
-    b.className =
-      'g-dot' +
-      (
-        i === 0
-          ? ' on'
-          : ''
-      );
-
-    b.setAttribute(
-      'aria-label',
-      'Foto ' + (i + 1)
-    );
-
-    b.addEventListener(
-      'click',
-      () => go(i)
-    );
-
-    dotsC.appendChild(b);
-
-  }
-);
 
 
 function slideW() {
@@ -3516,15 +3512,10 @@ function go(i) {
     ) +
     'px)';
 
-  dotsC
-    .querySelectorAll('.g-dot')
-    .forEach(
-      (d, j) =>
-        d.classList.toggle(
-          'on',
-          j === cur
-        )
-    );
+  galleryCounter.textContent =
+    String(cur + 1).padStart(2, '0') +
+    ' / ' +
+    String(slides.length).padStart(2, '0');
 
 }
 
@@ -3533,16 +3524,53 @@ document
   .getElementById('g-prev')
   .addEventListener(
     'click',
-    () => go(cur - 1)
+    () => {
+      go(cur - 1);
+      restartGalleryAutoPlay();
+    }
   );
-
 
 document
   .getElementById('g-next')
   .addEventListener(
     'click',
-    () => go(cur + 1)
+    () => {
+      go(cur + 1);
+      restartGalleryAutoPlay();
+    }
   );
+
+
+let galleryAutoPlay;
+
+function restartGalleryAutoPlay() {
+
+  clearInterval(galleryAutoPlay);
+
+  galleryAutoPlay = setInterval(
+    () => go(cur + 1),
+    6500
+  );
+
+}
+
+restartGalleryAutoPlay();
+
+window.addEventListener(
+  'resize',
+  () => go(cur)
+);
+
+document.addEventListener(
+  'visibilitychange',
+  () => {
+    if (document.hidden) {
+      clearInterval(galleryAutoPlay);
+    } else {
+      restartGalleryAutoPlay();
+    }
+  }
+);
 
 
 let tx = 0;
@@ -3579,6 +3607,8 @@ track.addEventListener(
           ? cur + 1
           : cur - 1
       );
+
+      restartGalleryAutoPlay();
 
     }
 

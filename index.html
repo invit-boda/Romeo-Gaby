@@ -1597,72 +1597,44 @@
     .btn-cuenta {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      gap: 0.8rem;
       width: 100%;
       max-width: 400px;
       margin: 0 auto;
       padding: 1rem 1.4rem;
-      border: 1px solid rgba(26,43,74,0.25);
-      background: transparent;
-      color: var(--navy);
+      border: 1px solid var(--navy);
+      background: var(--navy);
+      color: var(--gold-pale);
       font-family: var(--ff-sans);
       font-size: 0.68rem;
       font-weight: 500;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: background 0.25s, color 0.25s;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s, transform 0.25s;
     }
 
     .btn-cuenta:hover {
-      background: var(--navy);
-      color: var(--gold-pale);
-    }
-
-    .btn-cuenta:hover .cuenta-chevron {
-      color: var(--gold-pale);
-    }
-
-    .cuenta-chevron {
-      font-size: 0.8rem;
+      background: var(--gold);
+      border-color: var(--gold);
       color: var(--navy);
-      transition: transform 0.3s, color 0.25s;
-      display: inline-block;
+      transform: translateY(-2px);
     }
 
-    .cuenta-chevron.open {
-      transform: rotate(180deg);
+    .regalo-arrow {
+      font-size: 1rem;
+      line-height: 1;
     }
 
-    .cuenta-panel {
+    .regalo-alternative {
       max-width: 400px;
-      margin: 0 auto;
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.4s ease;
-    }
-
-    .cuenta-panel.open {
-      max-height: 350px;
-    }
-
-    .cuenta-inner {
+      margin: 1rem auto 0;
       border: 1px solid rgba(26,43,74,0.15);
-      border-top: none;
-      padding: 1.5rem;
+      padding: 1.25rem 1.4rem;
       background: var(--cream-dk);
       text-align: left;
-    }
-
-    .cuenta-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.7rem;
-    }
-
-    .cuenta-row:last-child {
-      margin-bottom: 0;
     }
 
     .cuenta-key {
@@ -1670,20 +1642,6 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--text-lt);
-    }
-
-    .cuenta-val {
-      font-family: var(--ff-serif);
-      font-size: 1rem;
-      color: var(--navy);
-      letter-spacing: 0.05em;
-    }
-
-    .regalo-link {
-      color: var(--navy);
-      text-decoration: underline;
-      text-decoration-color: var(--gold);
-      text-underline-offset: 3px;
     }
 
     .regalo-note {
@@ -3144,88 +3102,41 @@
       </p>
 
 
-      <!-- BOTÓN DESPLEGABLE -->
+      <!-- ACCESO DIRECTO A LA LISTA -->
 
-      <button
-        type="button"
+      <a
         class="btn-cuenta"
-        id="btn-cuenta"
-        aria-expanded="false"
-        aria-controls="cuenta-panel"
+        href="https://www.cemaco.com/list/BodaRomeoYGaby28112026"
+        target="_blank"
+        rel="noopener"
       >
 
         <span>
           Ver lista de regalos
         </span>
 
-        <span
-          class="cuenta-chevron"
-          id="cuenta-chevron"
-          aria-hidden="true"
-        >
-          &#8964;
+        <span class="regalo-arrow" aria-hidden="true">
+          &#8599;
         </span>
 
-      </button>
+      </a>
 
 
-      <!-- PANEL DE REGALOS -->
+      <!-- ALTERNATIVA DE SOBRES, SIEMPRE VISIBLE -->
 
       <div
-        class="cuenta-panel"
-        id="cuenta-panel"
-        aria-hidden="true"
-        inert
+        class="regalo-alternative"
       >
 
-        <div class="cuenta-inner">
+        <span class="cuenta-key">
+          Sobres
+        </span>
 
-
-          <!-- CEMACO -->
-
-          <div class="cuenta-row">
-
-            <span class="cuenta-key">
-              Cemaco
-            </span>
-
-            <span class="cuenta-val">
-
-              <a
-          href="https://www.cemaco.com/list/BodaRomeoYGaby28112026"
-                target="_blank"
-                rel="noopener"
-                class="regalo-link"
-              >
-                Ver lista de regalos
-              </a>
-
-            </span>
-
-          </div>
-
-
-          <!-- SOBRES -->
-
-          <div
-            class="cuenta-row"
-            style="display:block; margin-top:1.2rem;"
-          >
-
-            <span class="cuenta-key">
-              Sobres
-            </span>
-
-            <p class="regalo-note">
-              También tendremos sobres disponibles para quienes
-              deseen obsequiarnos dinero en efectivo.
-              Su detalle será recibido con mucho cariño.
-            </p>
-
-          </div>
-
-
-        </div>
+        <p class="regalo-note">
+          También tendremos sobres disponibles para quienes
+          deseen obsequiarnos dinero en efectivo.
+          Su detalle será recibido con mucho cariño.
+        </p>
 
       </div>
 
@@ -4033,54 +3944,6 @@ END:VCALENDAR`;
 
   }
 );
-
-/* ── REGALOS TOGGLE ── */
-
-const btnCuenta =
-  document.getElementById('btn-cuenta');
-
-const cuentaPanel =
-  document.getElementById('cuenta-panel');
-
-const chevron =
-  document.getElementById('cuenta-chevron');
-
-let cuentaOpen = false;
-
-
-btnCuenta.addEventListener(
-  'click',
-  () => {
-
-    cuentaOpen =
-      !cuentaOpen;
-
-    cuentaPanel.classList.toggle(
-      'open',
-      cuentaOpen
-    );
-
-    chevron.classList.toggle(
-      'open',
-      cuentaOpen
-    );
-
-    btnCuenta.setAttribute(
-      'aria-expanded',
-      cuentaOpen
-    );
-
-    cuentaPanel.setAttribute(
-      'aria-hidden',
-      !cuentaOpen
-    );
-
-    cuentaPanel.inert =
-      !cuentaOpen;
-
-  }
-);
-
 
 /* ── RSVP TOGGLE ── */
 

@@ -1019,14 +1019,14 @@
 
     .event-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1px;
       margin-top: 2.5rem;
       background: rgba(184,151,58,0.2);
       border: 1px solid rgba(184,151,58,0.2);
     }
 
-    @media (max-width: 380px) {
+    @media (max-width: 600px) {
       .event-grid {
         grid-template-columns: 1fr;
       }
@@ -1141,41 +1141,6 @@
       width: 100%;
       height: 100%;
       border: 0;
-    }
-
-    .map-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      background: var(--cream);
-    }
-
-    .map-placeholder p {
-      font-size: 0.78rem;
-      color: var(--text-lt);
-      letter-spacing: 0.1em;
-    }
-
-    .map-icon {
-      width: 36px;
-      height: 36px;
-      border: 1px solid var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 0.3rem;
-    }
-
-    .map-icon svg {
-      width: 16px;
-      height: 16px;
-      fill: none;
-      stroke: var(--gold);
-      stroke-width: 1.5;
     }
 
     .btn-directions {
@@ -1747,72 +1712,6 @@
       letter-spacing: 0.16em;
     }
 
-    /* Accesos rápidos: aparecen después de la portada */
-    .quick-actions {
-      position: fixed;
-      right: max(1rem, env(safe-area-inset-right));
-      bottom: max(1rem, env(safe-area-inset-bottom));
-      z-index: 90;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      border: 1px solid rgba(212,176,90,0.5);
-      border-radius: 999px;
-      background: rgba(20,34,61,0.94);
-      box-shadow: 0 10px 30px rgba(10,20,38,0.24);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transform: translateY(12px);
-      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
-    }
-
-    .quick-actions.visible {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
-
-    #sec-map,
-    #sec-rsvp {
-      scroll-margin-top: 1rem;
-    }
-
-    .quick-action {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      min-height: 48px;
-      padding: 0 1rem;
-      color: #fff;
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .quick-action + .quick-action {
-      border-left: 1px solid rgba(212,176,90,0.34);
-    }
-
-    .quick-action svg {
-      width: 16px;
-      height: 16px;
-      fill: none;
-      stroke: var(--gold-pale);
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .quick-action:hover {
-      background: rgba(212,176,90,0.13);
-    }
-
     /* Control de música */
     .music-toggle {
       position: fixed;
@@ -1909,25 +1808,6 @@
         height: 29px;
       }
 
-      .quick-actions {
-        right: 50%;
-        bottom: max(0.8rem, env(safe-area-inset-bottom));
-        transform: translate(50%, 12px);
-      }
-
-      .quick-actions.visible {
-        transform: translate(50%, 0);
-      }
-
-      .quick-action {
-        min-height: 46px;
-        padding: 0 0.85rem;
-        font-size: 0.62rem;
-      }
-
-      footer {
-        padding-bottom: calc(5rem + env(safe-area-inset-bottom));
-      }
     }
 
     /* ══ FINAL ═══════════════════════════════════════ */
@@ -2017,7 +1897,6 @@
 
       .gallery-track,
       .gallery-slide img,
-      .quick-actions,
       .music-toggle,
       .music-icon {
         transition: none !important;
@@ -2498,13 +2377,6 @@
           </p>
         </div>
 
-        <div class="event-cell">
-          <p class="event-cell-label">Vestimenta</p>
-          <p class="event-cell-value">
-            Formal
-          </p>
-        </div>
-
       </div>
 
       <div class="venue-strip">
@@ -2615,19 +2487,8 @@
         <p class="location-name">Jardines San Miguel</p>
 
         <div class="map-frame">
-
-          <div class="map-placeholder">
-
-            <div class="map-icon">
-
-              <svg viewBox="0 0 24 24">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-              </svg>
-
-            </div>
-
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d328.58104243951357!2d-90.5360032815262!3d14.482565333016039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8589a61abc972a17%3A0x16d79db7835e38ca!2sJardines%20San%20Miguel!5e1!3m2!1ses!2sgt!4v1786984314038!5m2!1ses!2sgt"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241.43954859920507!2d-90.53644108348186!3d14.482807371879813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8589a61abc972a17%3A0x16d79db7835e38ca!2sJardines%20San%20Miguel!5e0!3m2!1ses!2sgt!4v1789661541876!5m2!1ses!2sgt"
               width="600"
               height="450"
               style="border:0;"
@@ -2636,8 +2497,6 @@
               referrerpolicy="strict-origin-when-cross-origin"
               title="Mapa de Jardines San Miguel"
             ></iframe>
-
-          </div>
 
         </div>
 
@@ -3010,7 +2869,7 @@
             <span class="cuenta-val">
 
               <a
-                href="https://www.cemaco.com/"
+          href="https://www.cemaco.com/list/BodaRomeoYGaby28112026"
                 target="_blank"
                 rel="noopener"
                 class="regalo-link"
@@ -3196,28 +3055,6 @@
   </div>
 
 </main>
-
-<nav
-  class="quick-actions"
-  id="quick-actions"
-  aria-label="Accesos rápidos"
-  aria-hidden="true"
-  inert
->
-  <a class="quick-action" href="#sec-map">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
-      <circle cx="12" cy="10" r="2.5" />
-    </svg>
-    Ubicación
-  </a>
-  <a class="quick-action" href="#sec-rsvp" id="quick-rsvp">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M20 6 9 17l-5-5" />
-    </svg>
-    Confirmar
-  </a>
-</nav>
 
 <button
   type="button"
@@ -3458,9 +3295,6 @@ const heroSection =
 const heroCtaBtn =
   document.getElementById('hero-cta-btn');
 
-const quickActions =
-  document.getElementById('quick-actions');
-
 heroCtaBtn.addEventListener(
   'click',
   () => {
@@ -3471,10 +3305,6 @@ heroCtaBtn.addEventListener(
 
     invitationContent.removeAttribute('inert');
     invitationContent.setAttribute('aria-hidden', 'false');
-
-    quickActions.classList.add('visible');
-    quickActions.removeAttribute('inert');
-    quickActions.setAttribute('aria-hidden', 'false');
 
     document.body.style.overflow = '';
 
@@ -3967,25 +3797,6 @@ btnRsvp.addEventListener(
 
   }
 );
-
-document
-  .getElementById('quick-rsvp')
-  .addEventListener(
-    'click',
-    () => {
-
-      if (!rsvpOpen) {
-        btnRsvp.click();
-      }
-
-      window.setTimeout(
-        () => document.getElementById('rsvp-nombre').focus(),
-        650
-      );
-
-    }
-  );
-
 
 /* ── GOOGLE APPS SCRIPT ── */
 

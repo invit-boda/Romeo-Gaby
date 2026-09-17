@@ -2019,6 +2019,178 @@
       letter-spacing: 0.14em;
     }
 
+    /* Ritmo visual alternado entre secciones claras y oscuras */
+    #sec-event {
+      background: var(--cream);
+    }
+
+    #sec-event .sec-tag {
+      color: var(--gold-text);
+    }
+
+    #sec-event h2 {
+      color: var(--navy);
+    }
+
+    #sec-event h2 em {
+      color: var(--gold-text);
+    }
+
+    #sec-event .gold-rule {
+      background: var(--gold);
+    }
+
+    #sec-event .event-grid {
+      background: rgba(26,43,74,0.12);
+      border-color: rgba(26,43,74,0.12);
+    }
+
+    #sec-event .event-cell {
+      background: var(--cream-dk);
+    }
+
+    #sec-event .event-cell-label,
+    #sec-event .venue-strip-label {
+      color: var(--gold-text);
+    }
+
+    #sec-event .event-cell-value {
+      color: var(--navy);
+    }
+
+    #sec-event .venue-strip {
+      background: var(--cream-dkk);
+      border-color: rgba(26,43,74,0.12);
+    }
+
+    #sec-event .venue-name {
+      color: var(--navy);
+    }
+
+    #sec-event .venue-address {
+      color: var(--text-mid);
+    }
+
+    #sec-event .btn-calendar {
+      border-color: rgba(26,43,74,0.35);
+      color: var(--navy);
+    }
+
+    #sec-event .btn-calendar:hover {
+      background: var(--navy);
+      color: var(--gold-pale);
+    }
+
+    #sec-map,
+    #sec-timeline,
+    #sec-dresscode {
+      background: var(--navy);
+    }
+
+    #sec-map .sec-tag,
+    #sec-timeline .sec-tag,
+    #sec-dresscode .sec-tag {
+      color: var(--gold-pale) !important;
+    }
+
+    #sec-map h2,
+    #sec-timeline h2,
+    #sec-dresscode h2 {
+      color: #fff;
+    }
+
+    #sec-map h2 em,
+    #sec-timeline h2 em,
+    #sec-dresscode h2 em {
+      color: var(--gold-lt);
+    }
+
+    #sec-map .gold-rule,
+    #sec-timeline .gold-rule,
+    #sec-dresscode .gold-rule {
+      background: var(--gold-lt);
+    }
+
+    #sec-map .location-block {
+      padding: 2rem 1.4rem;
+      border: 1px solid rgba(212,176,90,0.28);
+      background: var(--navy-mid);
+    }
+
+    #sec-map .location-block:first-of-type {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(212,176,90,0.28);
+    }
+
+    #sec-map .location-kind {
+      color: var(--gold-pale);
+    }
+
+    #sec-map .location-name {
+      color: #fff;
+    }
+
+    #sec-map .location-note {
+      color: rgba(255,255,255,0.78);
+    }
+
+    #sec-map .btn-directions {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    #sec-map .btn-directions:hover {
+      background: var(--gold-lt);
+    }
+
+    #sec-timeline .timeline-track {
+      background: rgba(212,176,90,0.3);
+    }
+
+    #sec-timeline .timeline-progress {
+      background: var(--gold-lt);
+    }
+
+    #sec-timeline .tl-node {
+      background: var(--navy);
+      border-color: rgba(238,217,144,0.55);
+    }
+
+    #sec-timeline .tl-node svg {
+      stroke: var(--gold-pale);
+    }
+
+    #sec-timeline .tl-item.active .tl-node {
+      background: var(--gold);
+      border-color: var(--gold-lt);
+    }
+
+    #sec-timeline .tl-item.active .tl-node svg {
+      fill: var(--navy);
+      stroke: var(--navy);
+    }
+
+    #sec-timeline .tl-title {
+      color: #fff;
+    }
+
+    #sec-timeline .tl-icon svg {
+      color: var(--gold-pale) !important;
+    }
+
+    #sec-dresscode .dress-badge {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    #sec-dresscode .dress-illustration {
+      color: var(--gold-pale);
+    }
+
+    #sec-dresscode .dress-note {
+      color: rgba(255,255,255,0.8);
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .reveal,
       .hero-label,
@@ -3257,13 +3429,13 @@ const reducedMotionQuery =
 
 /* Orden práctico: primero la información esencial para invitados */
 [
+  'sec-photo-band',
   'sec-countdown',
   'sec-event',
   'sec-map',
   'sec-rsvp',
   'sec-timeline',
   'sec-story',
-  'sec-photo-band',
   'sec-dresscode',
   'sec-regalos',
   'sec-gallery',
@@ -3496,7 +3668,7 @@ heroCtaBtn.addEventListener(
     window.scrollTo(0, 0);
 
     const firstInvitationHeading =
-      document.querySelector('#sec-countdown h2');
+      document.querySelector('#sec-photo-band .photo-band-txt p');
 
     firstInvitationHeading.tabIndex = -1;
     firstInvitationHeading.focus({ preventScroll: true });

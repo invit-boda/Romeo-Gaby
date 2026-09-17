@@ -1813,7 +1813,102 @@
       background: rgba(212,176,90,0.13);
     }
 
+    /* Control de música */
+    .music-toggle {
+      position: fixed;
+      top: max(1rem, env(safe-area-inset-top));
+      right: max(1rem, env(safe-area-inset-right));
+      z-index: 95;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      min-height: 46px;
+      padding: 0.48rem 0.95rem 0.48rem 0.55rem;
+      border: 1px solid rgba(212,176,90,0.58);
+      border-radius: 999px;
+      background: rgba(20,34,61,0.94);
+      color: #fff;
+      box-shadow: 0 8px 26px rgba(10,20,38,0.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-10px);
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease, background 0.25s ease;
+    }
+
+    .music-toggle.visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .music-toggle:hover {
+      background: rgba(29,48,84,0.98);
+    }
+
+    .music-icon {
+      position: relative;
+      width: 31px;
+      height: 31px;
+      border: 1px solid rgba(238,217,144,0.64);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--gold-pale);
+      font-family: var(--ff-serif);
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .music-toggle[aria-pressed="true"] .music-icon {
+      animation: musicPulse 2.2s ease-in-out infinite;
+    }
+
+    .music-copy {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.15;
+    }
+
+    .music-title {
+      color: var(--gold-pale);
+      font-size: 0.57rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .music-state {
+      margin-top: 0.18rem;
+      color: rgba(255,255,255,0.82);
+      font-family: var(--ff-sub);
+      font-size: 0.78rem;
+      font-style: italic;
+    }
+
+    @keyframes musicPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(212,176,90,0); }
+      50% { box-shadow: 0 0 0 5px rgba(212,176,90,0.14); }
+    }
+
     @media (max-width: 520px) {
+      .music-toggle {
+        top: max(0.75rem, env(safe-area-inset-top));
+        right: max(0.75rem, env(safe-area-inset-right));
+        min-height: 43px;
+        padding: 0.4rem 0.75rem 0.4rem 0.45rem;
+      }
+
+      .music-icon {
+        width: 29px;
+        height: 29px;
+      }
+
       .quick-actions {
         right: 50%;
         bottom: max(0.8rem, env(safe-area-inset-bottom));
@@ -1922,8 +2017,11 @@
 
       .gallery-track,
       .gallery-slide img,
-      .quick-actions {
+      .quick-actions,
+      .music-toggle,
+      .music-icon {
         transition: none !important;
+        animation: none !important;
       }
 
       .env-flap,
@@ -3121,6 +3219,24 @@
   </a>
 </nav>
 
+<button
+  type="button"
+  class="music-toggle"
+  id="music-toggle"
+  aria-label="Pausar música"
+  aria-pressed="false"
+  aria-hidden="true"
+  inert
+>
+  <span class="music-icon" aria-hidden="true">♪</span>
+  <span class="music-copy" aria-hidden="true">
+    <span class="music-title">Música</span>
+    <span class="music-state" id="music-state">Escuchar</span>
+  </span>
+</button>
+
+<audio id="wedding-music" loop preload="none"></audio>
+
 
 <script>
 
@@ -3130,10 +3246,148 @@ const envScreen = document.getElementById('envelope-screen');
 const envWrap   = document.getElementById('env-wrap');
 const mainContent = document.getElementById('main-content');
 const invitationContent = document.getElementById('invitation-content');
+const weddingMusic = document.getElementById('wedding-music');
+const musicToggle = document.getElementById('music-toggle');
+const musicState = document.getElementById('music-state');
 const reducedMotionQuery =
   window.matchMedia('(prefers-reduced-motion: reduce)');
 
 let opened = false;
+let musicReady = false;
+let playWhenMusicIsReady = false;
+
+weddingMusic.volume = 0.38;
+
+const musicPartUrls = [
+  'assets/audio/parts/la-boda-00.bin',
+  'assets/audio/parts/la-boda-01.bin',
+  'assets/audio/parts/la-boda-02.bin',
+  'assets/audio/parts/la-boda-03.bin',
+  'assets/audio/parts/la-boda-04.bin',
+  'assets/audio/parts/la-boda-05.bin'
+];
+
+const weddingMusicReady =
+  Promise
+    .all(
+      musicPartUrls.map(
+        url =>
+          fetch(url)
+            .then(response => {
+
+              if (!response.ok) {
+                throw new Error('No se pudo cargar la música.');
+              }
+
+              return response.arrayBuffer();
+
+            })
+      )
+    )
+    .then(parts => {
+
+      const musicBlob =
+        new Blob(
+          parts,
+          { type: 'audio/mpeg' }
+        );
+
+      weddingMusic.src =
+        URL.createObjectURL(musicBlob);
+
+      weddingMusic.load();
+      musicReady = true;
+
+      if (playWhenMusicIsReady) {
+        startWeddingMusic();
+      }
+
+    })
+    .catch(error => {
+
+      console.error(
+        'Error al cargar la música:',
+        error
+      );
+
+      playWhenMusicIsReady = false;
+      musicState.textContent = 'No disponible';
+
+    });
+
+function updateMusicControl() {
+
+  const isPlaying =
+    !weddingMusic.paused;
+
+  musicToggle.setAttribute(
+    'aria-pressed',
+    isPlaying
+  );
+
+  musicToggle.setAttribute(
+    'aria-label',
+    isPlaying
+      ? 'Pausar música'
+      : 'Reproducir música'
+  );
+
+  musicState.textContent =
+    isPlaying
+      ? 'Pausar'
+      : 'Escuchar';
+
+}
+
+function startWeddingMusic() {
+
+  if (!musicReady) {
+    playWhenMusicIsReady = true;
+    musicState.textContent = 'Cargando...';
+    return;
+  }
+
+  playWhenMusicIsReady = false;
+
+  const playAttempt =
+    weddingMusic.play();
+
+  if (playAttempt) {
+    playAttempt
+      .then(updateMusicControl)
+      .catch(updateMusicControl);
+  }
+
+}
+
+musicToggle.addEventListener(
+  'click',
+  () => {
+
+    if (!musicReady && playWhenMusicIsReady) {
+      playWhenMusicIsReady = false;
+      musicState.textContent = 'Escuchar';
+      return;
+    }
+
+    if (weddingMusic.paused) {
+      startWeddingMusic();
+    } else {
+      weddingMusic.pause();
+    }
+
+  }
+);
+
+weddingMusic.addEventListener(
+  'play',
+  updateMusicControl
+);
+
+weddingMusic.addEventListener(
+  'pause',
+  updateMusicControl
+);
 
 function openEnvelope() {
 
@@ -3142,6 +3396,12 @@ function openEnvelope() {
   opened = true;
 
   envWrap.classList.add('opening');
+
+  musicToggle.classList.add('visible');
+  musicToggle.removeAttribute('inert');
+  musicToggle.setAttribute('aria-hidden', 'false');
+
+  startWeddingMusic();
 
   const contentRevealDelay =
     reducedMotionQuery.matches ? 0 : 1350;

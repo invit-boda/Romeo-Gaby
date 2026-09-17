@@ -1028,7 +1028,25 @@
 
     @media (max-width: 600px) {
       .event-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .event-cell:first-child {
+        grid-column: 1 / -1;
+      }
+
+      .event-cell {
+        padding: 1.45rem 0.75rem;
+      }
+    }
+
+    @media (max-width: 340px) {
+      .event-grid {
         grid-template-columns: 1fr;
+      }
+
+      .event-cell:first-child {
+        grid-column: auto;
       }
     }
 

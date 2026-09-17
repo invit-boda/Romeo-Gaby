@@ -54,6 +54,8 @@
 
     html {
       scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
 
     body {
@@ -499,14 +501,40 @@
     }
 
     @media (max-width: 700px) {
+      #hero {
+        grid-template-rows: minmax(2rem, 0.52fr) auto minmax(2.5rem, 0.48fr);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+      }
+
       #hero-photo {
-        background-size: auto 112%;
-        background-position: center 62%;
+        position: fixed;
+        background-size: auto 128%;
+        background-position: center 88%;
         background-repeat: no-repeat;
       }
 
       #hero-bottom {
-        padding-bottom: clamp(6rem, 12vh, 8rem);
+        grid-row: 2;
+        align-self: center;
+        padding: 1rem clamp(1.25rem, 6vw, 2rem);
+      }
+
+      .hero-label {
+        margin-bottom: 0.55rem;
+      }
+
+      .hero-verse {
+        margin-top: 1rem;
+        line-height: 1.5;
+      }
+
+      .hero-date-pill {
+        margin-top: 1.25rem;
+      }
+
+      .hero-cta {
+        margin-top: 1rem;
       }
     }
 
@@ -804,21 +832,23 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      gap: clamp(0.6rem, 3vw, 2rem);
+      gap: clamp(0.2rem, 1.5vw, 1.2rem);
       margin-top: 2.8rem;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      width: 100%;
     }
 
     .cd-unit {
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-width: 64px;
+      flex: 1 1 0;
+      min-width: 0;
     }
 
     .cd-num {
       font-family: var(--ff-serif);
-      font-size: clamp(3rem, 9vw, 4.5rem);
+      font-size: clamp(1.85rem, 9vw, 4.5rem);
       font-weight: 500;
       color: var(--gold-lt);
       line-height: 1;
@@ -826,16 +856,17 @@
     }
 
     .cd-label {
-      font-size: 0.58rem;
-      letter-spacing: 0.3em;
+      font-size: clamp(0.42rem, 1.65vw, 0.58rem);
+      letter-spacing: clamp(0.08em, 0.6vw, 0.3em);
       text-transform: uppercase;
       color: rgba(255,255,255,0.45);
       margin-top: 0.5rem;
     }
 
     .cd-sep {
+      flex: 0 0 auto;
       font-family: var(--ff-serif);
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-size: clamp(1.2rem, 5vw, 3rem);
       color: rgba(184,151,58,0.35);
       line-height: 1;
       margin-top: 0.2rem;
@@ -961,14 +992,6 @@
     .tl-content {
       flex: 1;
       padding-top: 0.1rem;
-    }
-
-    .tl-time {
-      font-size: 0.72rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--text-lt);
-      margin-bottom: 0.2rem;
     }
 
     .tl-title {
@@ -2183,12 +2206,8 @@
 
         <div class="tl-content">
 
-          <p class="tl-time">
-            5:00 PM
-          </p>
-
           <p class="tl-title">
-            Ceremonia Religiosa
+            Ceremonia
           </p>
 
           <div class="tl-icon">
@@ -2229,12 +2248,50 @@
 
         <div class="tl-content">
 
-          <p class="tl-time">
-            6:00 PM
+          <p class="tl-title">
+            Baile de novios
           </p>
 
+          <div class="tl-icon">
+
+            <svg
+              viewBox="0 0 80 80"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              color="#1A2B4A"
+            >
+              <path d="M38 20 Q44 16 46 22 Q42 26 38 24Z" fill="currentColor" stroke="none"/>
+              <path d="M42 24 L40 36 L34 44 M42 30 L50 32"/>
+              <path d="M40 36 L44 48 L40 56 M40 48 L46 54"/>
+              <path d="M55 25 Q61 21 63 27 Q59 31 55 29Z" fill="currentColor" stroke="none"/>
+              <path d="M59 29 L57 41 L51 49 M59 35 L67 37"/>
+              <path d="M57 41 L61 53 L57 61 M57 53 L63 59"/>
+            </svg>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Item 3 -->
+
+      <div class="tl-item" data-index="2">
+
+        <div class="tl-node">
+
+          <svg viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+
+        </div>
+
+        <div class="tl-content">
+
           <p class="tl-title">
-            Cóctel de bienvenida
+            Brindis
           </p>
 
           <div class="tl-icon">
@@ -2259,9 +2316,9 @@
       </div>
 
 
-      <!-- Item 3 -->
+      <!-- Item 4 -->
 
-      <div class="tl-item" data-index="2">
+      <div class="tl-item" data-index="3">
 
         <div class="tl-node">
 
@@ -2273,12 +2330,8 @@
 
         <div class="tl-content">
 
-          <p class="tl-time">
-            9:00 PM
-          </p>
-
           <p class="tl-title">
-            Celebración
+            Cena
           </p>
 
           <div class="tl-icon">
@@ -2305,9 +2358,9 @@
       </div>
 
 
-      <!-- Item 4 -->
+      <!-- Item 5 -->
 
-      <div class="tl-item" data-index="3">
+      <div class="tl-item" data-index="4">
 
         <div class="tl-node">
 
@@ -2319,12 +2372,8 @@
 
         <div class="tl-content">
 
-          <p class="tl-time">
-            10:00 PM
-          </p>
-
           <p class="tl-title">
-            A bailar
+            Fotografía
           </p>
 
           <div class="tl-icon">
@@ -2336,12 +2385,11 @@
               stroke-width="1.5"
               color="#1A2B4A"
             >
-              <path d="M38 20 Q44 16 46 22 Q42 26 38 24Z" fill="currentColor" stroke="none"/>
-              <path d="M42 24 L40 36 L34 44 M42 30 L50 32"/>
-              <path d="M40 36 L44 48 L40 56 M40 48 L46 54"/>
-              <path d="M55 25 Q61 21 63 27 Q59 31 55 29Z" fill="currentColor" stroke="none"/>
-              <path d="M59 29 L57 41 L51 49 M59 35 L67 37"/>
-              <path d="M57 41 L61 53 L57 61 M57 53 L63 59"/>
+              <rect x="16" y="27" width="48" height="34" rx="3"/>
+              <path d="M28 27 L33 20 H47 L52 27"/>
+              <circle cx="40" cy="44" r="11"/>
+              <circle cx="40" cy="44" r="5"/>
+              <circle cx="57" cy="34" r="2" fill="currentColor" stroke="none"/>
             </svg>
 
           </div>

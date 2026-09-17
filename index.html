@@ -6,19 +6,19 @@
   <title>Roméo & Gaby · 28 de Noviembre · 2026</title>
 
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://invit-boda.github.io/Romeo-Gaby/?v=3" />
+  <meta property="og:url" content="https://invit-boda.github.io/Romeo-Gaby/" />
   <meta property="og:title" content="Roméo & Gaby — Nos Casamos" />
   <meta property="og:description" content="Con alegría les invitamos a celebrar el día más especial de nuestras vidas." />
-  <meta property="og:image" content="https://invit-boda.github.io/Romeo-Gaby/assets/fotos/momento-divertido.jpg?v=3" />
-  <meta property="og:image:secure_url" content="https://invit-boda.github.io/Romeo-Gaby/assets/fotos/momento-divertido.jpg?v=3" />
-  <meta property="og:image:width" content="1638" />
-  <meta property="og:image:height" content="2048" />
+  <meta property="og:image" content="https://invit-boda.github.io/Romeo-Gaby/assets/fotos/whatsapp-propuesta.jpg?v=1" />
+  <meta property="og:image:secure_url" content="https://invit-boda.github.io/Romeo-Gaby/assets/fotos/whatsapp-propuesta.jpg?v=1" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:alt" content="Roméo y Gaby celebrando su compromiso" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Roméo & Gaby — Nos Casamos" />
   <meta name="twitter:description" content="Con alegría les invitamos a celebrar el día más especial de nuestras vidas." />
-  <meta name="twitter:image" content="https://invit-boda.github.io/Romeo-Gaby/assets/fotos/momento-divertido.jpg?v=3" />
+  <meta name="twitter:image" content="https://invit-boda.github.io/Romeo-Gaby/assets/fotos/whatsapp-propuesta.jpg?v=1" />
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%231A2B4A'/%3E%3Cpath%20d='M32,47C13,34,18,17,32,25C46,17,51,34,32,47Z'%20fill='%23D4B05A'/%3E%3C/svg%3E" />
 
@@ -1018,6 +1018,52 @@
       height: 64px;
     }
 
+    @media (min-width: 760px) {
+      .timeline-container {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 1.25rem;
+        max-width: 1080px;
+        padding: 0 2rem 1rem;
+      }
+
+      .timeline-track,
+      .timeline-progress {
+        display: none;
+      }
+
+      .tl-item {
+        display: block;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+
+      .tl-node {
+        margin: 0 auto 1.1rem;
+      }
+
+      .tl-content {
+        padding: 0;
+      }
+
+      .tl-icon {
+        margin: 0.75rem auto 0;
+      }
+    }
+
+    @media (max-width: 759px) {
+      .tl-item {
+        margin-bottom: 2.5rem;
+      }
+
+      .tl-icon,
+      .tl-icon svg {
+        width: 56px;
+        height: 56px;
+      }
+    }
+
     /* ══ EVENT / VENUE ════════════════════════════════ */
 
     #sec-event {
@@ -1687,6 +1733,15 @@
       gap: 0.8rem;
       padding: 0 2rem;
       transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+      cursor: grab;
+      touch-action: pan-y;
+      user-select: none;
+      will-change: transform;
+    }
+
+    .gallery-track.dragging {
+      cursor: grabbing;
+      transition: none;
     }
 
     .gallery-slide {
@@ -1706,6 +1761,8 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      pointer-events: none;
+      user-select: none;
       transition: transform 0.6s ease;
     }
 
@@ -1919,6 +1976,49 @@
       color: rgba(255,255,255,0.7);
     }
 
+    /* Legibilidad reforzada para invitados con visión reducida */
+    .env-letter-date,
+    .envelope-hint,
+    .hero-label,
+    .photo-band-txt .src,
+    .sec-tag,
+    .event-cell-label,
+    .venue-strip-label,
+    .location-kind,
+    .dress-badge,
+    .final-sig-label,
+    footer p {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+    }
+
+    .hero-date-pill {
+      font-size: clamp(0.68rem, 2.4vw, 0.76rem);
+      letter-spacing: clamp(0.08em, 0.5vw, 0.16em);
+    }
+
+    .hero-cta,
+    .btn-directions,
+    .btn-calendar,
+    .calendar-option,
+    .btn-rsvp,
+    .rsvp-submit,
+    .btn-cuenta {
+      font-size: 0.76rem;
+      letter-spacing: 0.16em;
+    }
+
+    .cd-label {
+      font-size: clamp(0.64rem, 2vw, 0.72rem);
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .music-title {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .reveal,
       .hero-label,
@@ -2062,7 +2162,7 @@
 
   <!-- FRANJA DE FOTO -->
 
-  <section class="photo-band">
+  <section class="photo-band" id="sec-photo-band">
 
     <div class="photo-band-img"></div>
 
@@ -2410,7 +2510,7 @@
     <div class="sec-inner reveal">
 
       <p class="sec-tag">
-        Lugar y Fecha
+        Información del evento
       </p>
 
       <div class="gold-rule"></div>
@@ -2621,7 +2721,7 @@
     <div class="sec-inner reveal">
 
       <p class="sec-tag">
-        Confirmación
+        Te esperamos
       </p>
 
       <div class="gold-rule"></div>
@@ -2648,7 +2748,7 @@
       >
 
         <span>
-          Confirmar asistencia
+          Registrar mi asistencia
         </span>
 
         <span
@@ -2702,7 +2802,7 @@
               class="rsvp-submit"
               id="rsvp-submit"
             >
-              Confirmar asistencia
+              Enviar confirmación
             </button>
 
 
@@ -2869,13 +2969,13 @@
     <div class="sec-inner reveal">
 
       <p class="sec-tag">
-        Regalos
+        Un detalle especial
       </p>
 
       <div class="gold-rule"></div>
 
       <h2>
-        <em>Regalos</em>
+        Mesa de <em>regalos</em>
       </h2>
 
 
@@ -2992,7 +3092,7 @@
         <div class="gold-rule"></div>
 
         <h2>
-          Nuestra historia<br>
+          Nuestros recuerdos<br>
           <em>en imágenes</em>
         </h2>
 
@@ -3106,7 +3206,7 @@
   </div>
 
 
-  <footer>
+  <footer id="site-footer">
 
     <p>
       Roméo &amp; Gaby
@@ -3154,6 +3254,25 @@ const musicToggle = document.getElementById('music-toggle');
 const musicState = document.getElementById('music-state');
 const reducedMotionQuery =
   window.matchMedia('(prefers-reduced-motion: reduce)');
+
+/* Orden práctico: primero la información esencial para invitados */
+[
+  'sec-countdown',
+  'sec-event',
+  'sec-map',
+  'sec-rsvp',
+  'sec-timeline',
+  'sec-story',
+  'sec-photo-band',
+  'sec-dresscode',
+  'sec-regalos',
+  'sec-gallery',
+  'sec-final',
+  'site-footer'
+].forEach(id => {
+  const section = document.getElementById(id);
+  if (section) invitationContent.appendChild(section);
+});
 
 let opened = false;
 let musicReady = false;
@@ -3981,7 +4100,7 @@ rsvpForm.addEventListener(
         false;
 
       rsvpSubmit.textContent =
-        'Confirmar asistencia';
+        'Enviar confirmación';
 
     }
 
@@ -4080,7 +4199,7 @@ document
 let galleryAutoPlay;
 let galleryInView = false;
 let galleryHasStarted = false;
-let galleryPaused = reducedMotionQuery.matches;
+let galleryPaused = true;
 
 function updateGalleryToggle() {
 
@@ -4198,49 +4317,79 @@ document.addEventListener(
 );
 
 
-let tx = 0;
+let dragStartX = 0;
+let dragDeltaX = 0;
+let galleryDragging = false;
 
+function finishGalleryDrag(pointerId) {
+
+  if (!galleryDragging) return;
+
+  galleryDragging = false;
+  track.classList.remove('dragging');
+
+  if (
+    pointerId !== undefined &&
+    track.hasPointerCapture(pointerId)
+  ) {
+    track.releasePointerCapture(pointerId);
+  }
+
+  if (Math.abs(dragDeltaX) > 40) {
+    go(
+      dragDeltaX < 0
+        ? cur + 1
+        : cur - 1,
+      true
+    );
+  } else {
+    go(cur);
+  }
+
+  dragDeltaX = 0;
+
+}
 
 track.addEventListener(
-  'touchstart',
-  e => {
+  'pointerdown',
+  event => {
+
+    if (event.button !== 0) return;
 
     clearInterval(galleryAutoPlay);
+    galleryDragging = true;
+    dragStartX = event.clientX;
+    dragDeltaX = 0;
+    track.classList.add('dragging');
+    track.setPointerCapture(event.pointerId);
 
-    tx =
-      e.touches[0].clientX;
-
-  },
-  {
-    passive: true
   }
 );
 
-
 track.addEventListener(
-  'touchend',
-  e => {
+  'pointermove',
+  event => {
 
-    const dx =
-      e.changedTouches[0].clientX -
-      tx;
+    if (!galleryDragging) return;
 
-    if (
-      Math.abs(dx) > 40
-    ) {
+    dragDeltaX = event.clientX - dragStartX;
 
-      go(
-        dx < 0
-          ? cur + 1
-          : cur - 1,
-        true
-      );
-
-      restartGalleryAutoPlay();
-
-    }
+    track.style.transform =
+      'translateX(' +
+      (-cur * slideW() + dragDeltaX) +
+      'px)';
 
   }
+);
+
+track.addEventListener(
+  'pointerup',
+  event => finishGalleryDrag(event.pointerId)
+);
+
+track.addEventListener(
+  'pointercancel',
+  event => finishGalleryDrag(event.pointerId)
 );
 
 </script>

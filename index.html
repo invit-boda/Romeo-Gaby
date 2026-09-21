@@ -2254,6 +2254,120 @@
         transition-delay: 0ms !important;
       }
     }
+
+    /* ══ SOBRE REFINADO ══════════════════════════════ */
+
+    .env-body {
+      background:
+        radial-gradient(circle at 18% 20%, rgba(255,255,255,0.58), transparent 28%),
+        repeating-linear-gradient(
+          0deg,
+          rgba(124,102,72,0.035) 0,
+          rgba(124,102,72,0.035) 1px,
+          transparent 1px,
+          transparent 4px
+        ),
+        linear-gradient(145deg, #fcfaf5, #e6ddcf);
+      border: 1.5px solid rgba(238,217,144,0.9);
+      box-shadow:
+        0 22px 70px rgba(0,0,0,0.44),
+        0 0 0 7px rgba(255,255,255,0.04),
+        inset 0 0 28px rgba(117,93,59,0.08);
+    }
+
+    .env-body::after {
+      content: '';
+      position: absolute;
+      inset: 7px;
+      z-index: 0;
+      pointer-events: none;
+      border: 1px solid rgba(184,151,58,0.18);
+    }
+
+    .env-flap::before {
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(124,102,72,0.035) 0,
+          rgba(124,102,72,0.035) 1px,
+          transparent 1px,
+          transparent 4px
+        ),
+        linear-gradient(145deg, #f8f3e9, #e5dbcb);
+      box-shadow: inset 0 -10px 18px rgba(91,71,43,0.08);
+    }
+
+    .env-flap-inner {
+      background: linear-gradient(145deg, #eee6d9, #d8cbbb);
+    }
+
+    .env-fold-left {
+      background: linear-gradient(135deg, #f1e9dc, #ddd1c1);
+    }
+
+    .env-fold-right {
+      background: linear-gradient(225deg, #eee6da, #d7cbbb);
+    }
+
+    .env-bottom {
+      background: linear-gradient(to top, #e5dacb, #f6f0e7);
+      box-shadow: inset 0 10px 18px rgba(91,71,43,0.06);
+    }
+
+    .env-seal,
+    .seal-circle {
+      width: 76px;
+      height: 76px;
+    }
+
+    .seal-circle {
+      background:
+        radial-gradient(circle at 33% 28%, #405783 0%, #263d67 38%, #142849 100%);
+      border: 1px solid rgba(238,217,144,0.65);
+      box-shadow:
+        0 5px 14px rgba(0,0,0,0.34),
+        inset 0 1px 4px rgba(255,255,255,0.2),
+        inset 0 -3px 6px rgba(0,0,0,0.25);
+    }
+
+    .seal-circle::before {
+      border-color: rgba(238,217,144,0.62);
+    }
+
+    .seal-circle::after {
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    .seal-text {
+      color: #F4D77E;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.45);
+    }
+
+    .envelope-hint {
+      color: rgba(255,255,255,0.82);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+    }
+
+    .envelope-wrap.opening .env-flap {
+      transition-delay: 0.12s;
+    }
+
+    .envelope-wrap.opening .env-seal {
+      animation: sealRelease 0.42s ease forwards;
+    }
+
+    .envelope-wrap.opening .env-letter {
+      animation-delay: 0.68s;
+    }
+
+    .envelope-wrap.opening .env-body {
+      animation-delay: 0.76s;
+    }
+
   </style>
 </head>
 
@@ -2291,7 +2405,7 @@
 
       <div class="env-seal" id="env-seal">
         <div class="seal-circle">
-          <span class="seal-text" aria-hidden="true">✦</span>
+          <span class="seal-text" aria-hidden="true">R&amp;G</span>
         </div>
       </div>
 

@@ -2168,6 +2168,52 @@
       color: rgba(255,255,255,0.8);
     }
 
+    /* Legibilidad ampliada para personas mayores */
+    .body-copy,
+    .location-note,
+    .venue-address,
+    .rsvp-note,
+    .rsvp-status,
+    .dress-card-text,
+    .dress-note,
+    .regalo-body,
+    .regalo-alternative,
+    .regalo-note,
+    .final-body,
+    .photo-band-txt p {
+      font-size: clamp(1.08rem, 2.8vw, 1.22rem);
+      font-weight: 500;
+      line-height: 1.75;
+    }
+
+    .event-cell-label,
+    .venue-strip-label,
+    .location-kind,
+    .dress-badge,
+    .final-sig-label,
+    footer p {
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .event-cell-label,
+    .venue-strip-label {
+      color: #F1D77F;
+    }
+
+    .location-note,
+    .venue-address,
+    .regalo-note,
+    footer p {
+      color: #4A3D2E;
+    }
+
+    #sec-countdown .cd-label,
+    #sec-timeline .dress-note,
+    #sec-dresscode .dress-note {
+      color: rgba(255,255,255,0.92);
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .reveal,
       .hero-label,
@@ -2670,8 +2716,7 @@
         <div class="event-cell">
           <p class="event-cell-label">Fecha</p>
           <p class="event-cell-value">
-            28 de Noviembre<br>
-            2026
+            28.11.26
           </p>
         </div>
 
@@ -3195,23 +3240,23 @@
         id="g-track"
       >
 
-        <div class="gallery-slide"><img src="assets/fotos/opt/historia-01-inicios.webp" alt="Roméo y Gaby compartiendo uno de sus primeros recuerdos juntos" decoding="async" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/opt/historia-02-boliche.webp" alt="Roméo y Gaby en una de sus primeras salidas al boliche" decoding="async" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/opt/historia-03-jardin.webp" alt="Roméo y Gaby abrazados durante un paseo al aire libre" decoding="async" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/opt/historia-04-cafe.webp" alt="Roméo y Gaby compartiendo una tarde divertida" decoding="async" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/opt/historia-05-aventura.webp" alt="Roméo y Gaby de viaje junto a su mascota" decoding="async" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/opt/historia-06-graduacion.webp" alt="Roméo acompañando a Gaby en su graduación" decoding="async" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/opt/propuesta-paisaje.webp" alt="Roméo proponiéndole matrimonio a Gaby entre las flores" decoding="async" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/opt/historia-07-compromiso.webp" alt="Roméo y Gaby celebrando su compromiso" decoding="async" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/opt/espaldas.webp" alt="Roméo y Gaby contemplando juntos el paisaje" decoding="async" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/opt/abrazo-anillo.webp" alt="Roméo y Gaby abrazados mostrando sus anillos" decoding="async" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/opt/caminando.webp" alt="Roméo y Gaby caminando juntos durante su sesión de fotos" decoding="async" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/opt/entre-flores.webp" alt="Roméo y Gaby compartiendo un momento romántico entre flores" decoding="async" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/opt/beso-volcan.webp" alt="Roméo y Gaby compartiendo un beso frente al paisaje" decoding="async" /></div>
-        <div class="gallery-slide"><img src="assets/fotos/opt/sentados.webp" alt="Roméo y Gaby sentados juntos durante su sesión fotográfica" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/historia-01-inicios.webp" alt="Roméo y Gaby compartiendo uno de sus primeros recuerdos juntos" loading="eager" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/historia-02-boliche.webp" alt="Roméo y Gaby en una de sus primeras salidas al boliche" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/historia-03-jardin.webp" alt="Roméo y Gaby abrazados durante un paseo al aire libre" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/historia-04-cafe.webp" alt="Roméo y Gaby compartiendo una tarde divertida" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/historia-05-aventura.webp" alt="Roméo y Gaby de viaje junto a su mascota" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/historia-06-graduacion.webp" alt="Roméo acompañando a Gaby en su graduación" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/propuesta-paisaje.webp" alt="Roméo proponiéndole matrimonio a Gaby entre las flores" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/historia-07-compromiso.webp" alt="Roméo y Gaby celebrando su compromiso" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/espaldas.webp" alt="Roméo y Gaby contemplando juntos el paisaje" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/abrazo-anillo.webp" alt="Roméo y Gaby abrazados mostrando sus anillos" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/caminando.webp" alt="Roméo y Gaby caminando juntos durante su sesión de fotos" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/entre-flores.webp" alt="Roméo y Gaby compartiendo un momento romántico entre flores" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/beso-volcan.webp" alt="Roméo y Gaby compartiendo un beso frente al paisaje" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide"><img src="assets/fotos/opt/sentados.webp" alt="Roméo y Gaby sentados juntos durante su sesión fotográfica" loading="lazy" decoding="async" /></div>
 
-        <div class="gallery-slide gallery-slide--contain"><img src="assets/fotos/opt/historia-10-abrazo-bn.webp" alt="Roméo y Gaby abrazados frente a una cruz" decoding="async" /></div>
-        <div class="gallery-slide gallery-slide--contain"><img src="assets/fotos/opt/historia-11-beso-arco-bn.webp" alt="Roméo y Gaby besándose bajo un arco de piedra" decoding="async" /></div>
+        <div class="gallery-slide gallery-slide--contain"><img src="assets/fotos/opt/historia-10-abrazo-bn.webp" alt="Roméo y Gaby abrazados frente a una cruz" loading="lazy" decoding="async" /></div>
+        <div class="gallery-slide gallery-slide--contain"><img src="assets/fotos/opt/historia-11-beso-arco-bn.webp" alt="Roméo y Gaby besándose bajo un arco de piedra" loading="lazy" decoding="async" /></div>
 
       </div>
 
@@ -4477,10 +4522,9 @@ track.addEventListener(
   'pointerdown',
   event => {
 
-    if (
-      event.pointerType === 'mouse' &&
-      event.button !== 0
-    ) return;
+    if (event.pointerType !== 'mouse') return;
+
+    if (event.button !== 0) return;
 
     clearInterval(galleryAutoPlay);
     galleryDragging = true;
@@ -4504,6 +4548,7 @@ track.addEventListener(
 
     if (
       !galleryDragging ||
+      event.pointerType !== 'mouse' ||
       (
         dragPointerId !== null &&
         event.pointerId !== dragPointerId
@@ -4523,100 +4568,125 @@ track.addEventListener(
 
 track.addEventListener(
   'pointerup',
-  event => finishGalleryDrag(event.pointerId)
+  event => {
+
+    if (event.pointerType === 'mouse') {
+      finishGalleryDrag(event.pointerId);
+    }
+
+  }
 );
 
 track.addEventListener(
   'pointercancel',
-  event => finishGalleryDrag(event.pointerId)
+  event => {
+
+    if (event.pointerType === 'mouse') {
+      finishGalleryDrag(event.pointerId);
+    }
+
+  }
 );
 
 
-/* Compatibilidad con teléfonos antiguos sin Pointer Events */
+/* Gesto táctil directo para iPhone y Android */
 
-if (!('PointerEvent' in window)) {
+let touchStartX = 0;
+let touchStartY = 0;
+let touchDeltaX = 0;
+let touchDeltaY = 0;
 
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let touchDeltaX = 0;
-  let touchDeltaY = 0;
+track.addEventListener(
+  'touchstart',
+  event => {
 
-  track.addEventListener(
-    'touchstart',
-    event => {
+    if (!event.touches.length) return;
 
-      if (!event.touches.length) return;
+    clearInterval(galleryAutoPlay);
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+    touchDeltaX = 0;
+    touchDeltaY = 0;
+    galleryDragging = true;
+    track.classList.add('dragging');
 
-      clearInterval(galleryAutoPlay);
-      touchStartX = event.touches[0].clientX;
-      touchStartY = event.touches[0].clientY;
-      touchDeltaX = 0;
-      touchDeltaY = 0;
-      galleryDragging = true;
-      track.classList.add('dragging');
+  },
+  { passive: true }
+);
 
-    },
-    { passive: true }
-  );
+track.addEventListener(
+  'touchmove',
+  event => {
 
-  track.addEventListener(
-    'touchmove',
-    event => {
+    if (!galleryDragging || !event.touches.length) return;
 
-      if (!galleryDragging || !event.touches.length) return;
+    touchDeltaX = event.touches[0].clientX - touchStartX;
+    touchDeltaY = event.touches[0].clientY - touchStartY;
 
-      touchDeltaX = event.touches[0].clientX - touchStartX;
-      touchDeltaY = event.touches[0].clientY - touchStartY;
+    if (
+      Math.abs(touchDeltaX) > 8 &&
+      Math.abs(touchDeltaX) > Math.abs(touchDeltaY)
+    ) {
+      event.preventDefault();
 
-      if (
-        Math.abs(touchDeltaX) > 8 &&
-        Math.abs(touchDeltaX) > Math.abs(touchDeltaY)
-      ) {
-        event.preventDefault();
+      track.style.transform =
+        'translateX(' +
+        (-cur * slideW() + touchDeltaX) +
+        'px)';
 
-        track.style.transform =
-          'translateX(' +
-          (-cur * slideW() + touchDeltaX) +
-          'px)';
+    }
 
-      }
+  },
+  { passive: false }
+);
 
-    },
-    { passive: false }
-  );
+track.addEventListener(
+  'touchend',
+  () => {
 
-  track.addEventListener(
-    'touchend',
-    () => {
+    if (!galleryDragging) return;
 
-      if (!galleryDragging) return;
+    galleryDragging = false;
+    track.classList.remove('dragging');
 
-      galleryDragging = false;
-      track.classList.remove('dragging');
+    if (
+      Math.abs(touchDeltaX) > 40 &&
+      Math.abs(touchDeltaX) > Math.abs(touchDeltaY)
+    ) {
+      go(
+        touchDeltaX < 0
+          ? cur + 1
+          : cur - 1,
+        true
+      );
+      restartGalleryAutoPlay();
+    } else {
+      go(cur);
+    }
 
-      if (
-        Math.abs(touchDeltaX) > 40 &&
-        Math.abs(touchDeltaX) > Math.abs(touchDeltaY)
-      ) {
-        go(
-          touchDeltaX < 0
-            ? cur + 1
-            : cur - 1,
-          true
-        );
-        restartGalleryAutoPlay();
-      } else {
-        go(cur);
-      }
+    touchDeltaX = 0;
+    touchDeltaY = 0;
 
-      touchDeltaX = 0;
-      touchDeltaY = 0;
+  },
+  { passive: true }
+);
 
-    },
-    { passive: true }
-  );
+track.addEventListener(
+  'touchcancel',
+  () => {
 
-}
+    if (!galleryDragging) return;
+
+    galleryDragging = false;
+    track.classList.remove('dragging');
+    go(cur);
+
+    touchDeltaX = 0;
+    touchDeltaY = 0;
+
+  },
+  { passive: true }
+);
 
 </script>
 

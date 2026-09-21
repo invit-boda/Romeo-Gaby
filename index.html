@@ -1702,8 +1702,9 @@
       padding: 0 2rem;
       transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
       cursor: grab;
-      touch-action: pan-y;
+      touch-action: pan-y pinch-zoom;
       user-select: none;
+      -webkit-user-select: none;
       will-change: transform;
     }
 
@@ -4420,8 +4421,11 @@ document.addEventListener(
 
 
 let dragStartX = 0;
+let dragStartY = 0;
 let dragDeltaX = 0;
+let dragDeltaY = 0;
 let galleryDragging = false;
+let dragPointerId = null;
 
 function finishGalleryDrag(pointerId) {
 
@@ -4432,23 +4436,31 @@ function finishGalleryDrag(pointerId) {
 
   if (
     pointerId !== undefined &&
-    track.hasPointerCapture(pointerId)
+    typeof track.hasPointerCapture === 'function' &&
+    track.hasPointerCapture(pointerId) &&
+    typeof track.releasePointerCapture === 'function'
   ) {
     track.releasePointerCapture(pointerId);
   }
 
-  if (Math.abs(dragDeltaX) > 40) {
+  if (
+    Math.abs(dragDeltaX) > 40 &&
+    Math.abs(dragDeltaX) > Math.abs(dragDeltaY)
+  ) {
     go(
       dragDeltaX < 0
         ? cur + 1
         : cur - 1,
       true
     );
+    restartGalleryAutoPlay();
   } else {
     go(cur);
   }
 
+  dragPointerId = null;
   dragDeltaX = 0;
+  dragDeltaY = 0;
 
 }
 
@@ -4456,14 +4468,23 @@ track.addEventListener(
   'pointerdown',
   event => {
 
-    if (event.button !== 0) return;
+    if (
+      event.pointerType === 'mouse' &&
+      event.button !== 0
+    ) return;
 
     clearInterval(galleryAutoPlay);
     galleryDragging = true;
+    dragPointerId = event.pointerId;
     dragStartX = event.clientX;
+    dragStartY = event.clientY;
     dragDeltaX = 0;
+    dragDeltaY = 0;
     track.classList.add('dragging');
-    track.setPointerCapture(event.pointerId);
+
+    if (typeof track.setPointerCapture === 'function') {
+      track.setPointerCapture(event.pointerId);
+    }
 
   }
 );
@@ -4472,9 +4493,16 @@ track.addEventListener(
   'pointermove',
   event => {
 
-    if (!galleryDragging) return;
+    if (
+      !galleryDragging ||
+      (
+        dragPointerId !== null &&
+        event.pointerId !== dragPointerId
+      )
+    ) return;
 
     dragDeltaX = event.clientX - dragStartX;
+    dragDeltaY = event.clientY - dragStartY;
 
     track.style.transform =
       'translateX(' +
@@ -4493,6 +4521,93 @@ track.addEventListener(
   'pointercancel',
   event => finishGalleryDrag(event.pointerId)
 );
+
+
+/* Compatibilidad con teléfonos antiguos sin Pointer Events */
+
+if (!('PointerEvent' in window)) {
+
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchDeltaX = 0;
+  let touchDeltaY = 0;
+
+  track.addEventListener(
+    'touchstart',
+    event => {
+
+      if (!event.touches.length) return;
+
+      clearInterval(galleryAutoPlay);
+      touchStartX = event.touches[0].clientX;
+      touchStartY = event.touches[0].clientY;
+      touchDeltaX = 0;
+      touchDeltaY = 0;
+      galleryDragging = true;
+      track.classList.add('dragging');
+
+    },
+    { passive: true }
+  );
+
+  track.addEventListener(
+    'touchmove',
+    event => {
+
+      if (!galleryDragging || !event.touches.length) return;
+
+      touchDeltaX = event.touches[0].clientX - touchStartX;
+      touchDeltaY = event.touches[0].clientY - touchStartY;
+
+      if (
+        Math.abs(touchDeltaX) > 8 &&
+        Math.abs(touchDeltaX) > Math.abs(touchDeltaY)
+      ) {
+        event.preventDefault();
+
+        track.style.transform =
+          'translateX(' +
+          (-cur * slideW() + touchDeltaX) +
+          'px)';
+
+      }
+
+    },
+    { passive: false }
+  );
+
+  track.addEventListener(
+    'touchend',
+    () => {
+
+      if (!galleryDragging) return;
+
+      galleryDragging = false;
+      track.classList.remove('dragging');
+
+      if (
+        Math.abs(touchDeltaX) > 40 &&
+        Math.abs(touchDeltaX) > Math.abs(touchDeltaY)
+      ) {
+        go(
+          touchDeltaX < 0
+            ? cur + 1
+            : cur - 1,
+          true
+        );
+        restartGalleryAutoPlay();
+      } else {
+        go(cur);
+      }
+
+      touchDeltaX = 0;
+      touchDeltaY = 0;
+
+    },
+    { passive: true }
+  );
+
+}
 
 </script>
 

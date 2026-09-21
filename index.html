@@ -3692,13 +3692,77 @@ const tlContainer =
 const tlProgress =
   document.getElementById('tl-progress');
 
+const tlTrack =
+  tlContainer.querySelector('.timeline-track');
+
 const tlItems =
   document.querySelectorAll('.tl-item');
 
 
+function updateTimelineGeometry() {
+
+  if (!tlContainer || !tlItems.length) return;
+
+  const firstNode =
+    tlItems[0].querySelector('.tl-node');
+
+  const lastNode =
+    tlItems[tlItems.length - 1].querySelector('.tl-node');
+
+  if (!firstNode || !lastNode) return;
+
+  const containerRect =
+    tlContainer.getBoundingClientRect();
+
+  const firstRect =
+    firstNode.getBoundingClientRect();
+
+  const lastRect =
+    lastNode.getBoundingClientRect();
+
+  const lineLeft =
+    firstRect.left +
+    firstRect.width / 2 -
+    containerRect.left;
+
+  const lineTop =
+    firstRect.top +
+    firstRect.height / 2 -
+    containerRect.top;
+
+  const lineBottom =
+    lastRect.top +
+    lastRect.height / 2 -
+    containerRect.top;
+
+  const lineHeight =
+    Math.max(0, lineBottom - lineTop);
+
+  [tlTrack, tlProgress].forEach(
+    line => {
+
+      line.style.left =
+        lineLeft + 'px';
+
+      line.style.top =
+        lineTop + 'px';
+
+      line.style.bottom =
+        'auto';
+
+      line.style.height =
+        lineHeight + 'px';
+
+    }
+  );
+
+}
+
 function updateTimeline() {
 
   if (!tlContainer) return;
+
+  updateTimelineGeometry();
 
   const rect =
     tlContainer.getBoundingClientRect();
@@ -3764,6 +3828,11 @@ window.addEventListener(
   {
     passive: true
   }
+);
+
+window.addEventListener(
+  'resize',
+  updateTimeline
 );
 
 updateTimeline();

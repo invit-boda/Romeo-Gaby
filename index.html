@@ -1702,7 +1702,7 @@
       padding: 0 2rem;
       transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
       cursor: grab;
-      touch-action: pan-y pinch-zoom;
+      touch-action: pan-x pan-y pinch-zoom;
       user-select: none;
       -webkit-user-select: none;
       will-change: transform;
@@ -1718,6 +1718,26 @@
       max-width: 480px;
       aspect-ratio: 4/5;
       overflow: hidden;
+    }
+
+    @media (max-width: 759px) {
+      .gallery-track {
+        overflow-x: auto;
+        overflow-y: hidden;
+        transform: none !important;
+        transition: none;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .gallery-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      .gallery-slide {
+        scroll-snap-align: start;
+      }
     }
 
     @media (min-width: 580px) {
@@ -4417,21 +4437,9 @@ function slideW() {
 }
 
 
-function go(i, announce = false) {
+let galleryProgrammaticScroll = false;
 
-  cur =
-    (
-      (i % slides.length) +
-      slides.length
-    ) %
-    slides.length;
-
-  track.style.transform =
-    'translateX(-' +
-    (
-      cur * slideW()
-    ) +
-    'px)';
+function updateGalleryCounter(announce = false) {
 
   galleryCounter.textContent =
     String(cur + 1).padStart(2, '0') +
@@ -4445,6 +4453,50 @@ function go(i, announce = false) {
       ' de ' +
       String(slides.length);
   }
+
+}
+
+function isMobileGallery() {
+  return window.matchMedia('(max-width: 759px)').matches;
+}
+
+function go(i, announce = false) {
+
+  cur =
+    (
+      (i % slides.length) +
+      slides.length
+    ) %
+    slides.length;
+
+  if (isMobileGallery()) {
+
+    galleryProgrammaticScroll = true;
+
+    track.scrollTo({
+      left: cur * slideW(),
+      behavior: 'smooth'
+    });
+
+    window.setTimeout(
+      () => {
+        galleryProgrammaticScroll = false;
+      },
+      650
+    );
+
+  } else {
+
+    track.style.transform =
+      'translateX(-' +
+      (
+        cur * slideW()
+      ) +
+      'px)';
+
+  }
+
+  updateGalleryCounter(announce);
 
 }
 
@@ -4468,6 +4520,30 @@ document
       restartGalleryAutoPlay();
     }
   );
+
+track.addEventListener(
+  'scroll',
+  () => {
+
+    if (!isMobileGallery() || galleryProgrammaticScroll) return;
+
+    const next =
+      Math.max(
+        0,
+        Math.min(
+          slides.length - 1,
+          Math.round(track.scrollLeft / slideW())
+        )
+      );
+
+    if (next === cur) return;
+
+    cur = next;
+    updateGalleryCounter();
+
+  },
+  { passive: true }
+);
 
 
 let galleryAutoPlay;
@@ -4705,105 +4781,6 @@ track.addEventListener(
   }
 );
 
-
-/* Gesto táctil directo para iPhone y Android */
-
-let touchStartX = 0;
-let touchStartY = 0;
-let touchDeltaX = 0;
-let touchDeltaY = 0;
-
-track.addEventListener(
-  'touchstart',
-  event => {
-
-    if (!event.touches.length) return;
-
-    clearInterval(galleryAutoPlay);
-    touchStartX = event.touches[0].clientX;
-    touchStartY = event.touches[0].clientY;
-    touchDeltaX = 0;
-    touchDeltaY = 0;
-    galleryDragging = true;
-    track.classList.add('dragging');
-
-  },
-  { passive: true }
-);
-
-track.addEventListener(
-  'touchmove',
-  event => {
-
-    if (!galleryDragging || !event.touches.length) return;
-
-    touchDeltaX = event.touches[0].clientX - touchStartX;
-    touchDeltaY = event.touches[0].clientY - touchStartY;
-
-    if (
-      Math.abs(touchDeltaX) > 8 &&
-      Math.abs(touchDeltaX) > Math.abs(touchDeltaY)
-    ) {
-      event.preventDefault();
-
-      track.style.transform =
-        'translateX(' +
-        (-cur * slideW() + touchDeltaX) +
-        'px)';
-
-    }
-
-  },
-  { passive: false }
-);
-
-track.addEventListener(
-  'touchend',
-  () => {
-
-    if (!galleryDragging) return;
-
-    galleryDragging = false;
-    track.classList.remove('dragging');
-
-    if (
-      Math.abs(touchDeltaX) > 40 &&
-      Math.abs(touchDeltaX) > Math.abs(touchDeltaY)
-    ) {
-      go(
-        touchDeltaX < 0
-          ? cur + 1
-          : cur - 1,
-        true
-      );
-      restartGalleryAutoPlay();
-    } else {
-      go(cur);
-    }
-
-    touchDeltaX = 0;
-    touchDeltaY = 0;
-
-  },
-  { passive: true }
-);
-
-track.addEventListener(
-  'touchcancel',
-  () => {
-
-    if (!galleryDragging) return;
-
-    galleryDragging = false;
-    track.classList.remove('dragging');
-    go(cur);
-
-    touchDeltaX = 0;
-    touchDeltaY = 0;
-
-  },
-  { passive: true }
-);
 
 </script>
 
